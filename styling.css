@@ -3,7 +3,7 @@ ul {
     list-style-type: none;
     background-color:#c1d2ad ;
     overflow: hidden;
-    padding: 1em;
+    padding: 1.1em;
   
   }
 
@@ -15,10 +15,13 @@ li {
     text-decoration: none;
     color: white;
     font-size: 1.3em;
-    padding: 1em;
+    padding: 0.3em;
   }
   
   li a:hover{
     background-color: #43D6B9;
   }
+
+
+
   
