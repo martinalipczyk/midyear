@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styling.css" />
     <title>journaling</title>
 
 </head>
@@ -11,8 +12,43 @@
     <h1>daily journal</h1>
     <br><br>
     <h2>what's on your mind?</h2>
-    <h3>if you need a prompt, click here.</h3>
-    <h2>prompt that would be generated:</h2>
+    <h3>if you need a prompt, click this button below:</h3>
+    <div class = "bttn1">
+        <button id="generateButton">give me a prompt</button>
+
+<!-- Display area for the randomly chosen word -->
+<p id="displayWord"></p>
+
+<script>
+  // Word bank
+  const wordBank = ["what are the top three things that you are grateful for today? why?", 
+  "what is one thing that you have been putting off that you can do today?", 
+  "what is one thing that you would like to learn more about? why?", 
+  "what is one thing that you would like to improve about yourself? why?", 
+  "what is one thing that you are looking forward to this week? why?", 
+  "what is one thing that you are proud of yourself for accomplishing recently? why?", 
+  "what is one thing that you would like to do differently in your life? why?", 
+  "what is one thing that you would like to achieve in the next year? why?", 
+  "what is one thing that you would like to let go of? why?", 
+  "what is one thing that you would like to do more of? why?"];
+
+  // Function to generate a random word
+  function generateRandomWord() {
+    // Get a random index from the word bank
+    const randomIndex = Math.floor(Math.random() * wordBank.length);
+    
+    // Get the word at the random index
+    const randomWord = wordBank[randomIndex];
+    
+    // Display the random word on the screen
+    document.getElementById("displayWord").textContent = `${randomWord}`;
+  }
+
+  // Add event listener to the button
+  document.getElementById("generateButton").addEventListener("click", generateRandomWord);
+</script>
+    </div>
+
     <nav>
 </body>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Add some basic styling */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+  <title>Random Word Generator</title>
+</head>
+<body>
+
+<!-- Button to trigger word generation -->
+<button id="generateButton">Generate Random Word</button>
+
+<!-- Display area for the randomly chosen word -->
+<p id="displayWord"></p>
+
+<script>
+  // Word bank
+  const wordBank = ["apple", "banana", "cherry", "orange", "grape", "kiwi", "mango", "pear", "pineapple", "strawberry"];
+
+  // Function to generate a random word
+  function generateRandomWord() {
+    // Get a random index from the word bank
+    const randomIndex = Math.floor(Math.random() * wordBank.length);
+    
+    // Get the word at the random index
+    const randomWord = wordBank[randomIndex];
+    
+    // Display the random word on the screen
+    document.getElementById("displayWord").textContent = `Random Word: ${randomWord}`;
+  }
+
+  // Add event listener to the button
+  document.getElementById("generateButton").addEventListener("click", generateRandomWord);
+</script>
+
+</body>
+</html>
