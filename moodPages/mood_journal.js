@@ -27,6 +27,8 @@ var q5a2 = document.getElementById("q5a2");
 var q6a1 = document.getElementById("q6a1");
 var q6a2 = document.getElementById("q6a2");
 
+var button = document.getElementById('activeButton');
+
 
 //work on this
 q1a1.addEventListener("click", q1LowSleep);
@@ -48,6 +50,11 @@ q5a2.addEventListener("click", nothingWrong);
 
 q6a1.addEventListener("click", q6Yes);
 q6a2.addEventListener("click", q6No);
+
+button.addEventListener('click', function(){
+  button.classList.toggle('active');
+});
+
 
 // restart.addEventListener("click", restartQuiz);
 

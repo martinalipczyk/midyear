@@ -1,11 +1,32 @@
 body {
     font-family: Arial;
+    background: white;
+    color: rgb(255, 211, 161);  
 }
 
 h {
     text-align: center;
 }
 
-.title-text {
+.intro {
     text-align: center;
+}
+
+button {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+    vertical-align: top;    
+    border: none;
+    border-radius: 15px;
+}
+
+button:active, button.active {
+    background-color: black;
 }
