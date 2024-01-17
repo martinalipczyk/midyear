@@ -29,69 +29,69 @@ var q6a2 = document.getElementById("q6a2");
 
 
 //work on this
-q1a1.addEventListener("click", q1LowSleep());
-q1a2.addEventListener("click", q1LowSleep());
-q1a3.addEventListener("click", nothingWrong());
-q1a4.addEventListener("click", nothingWrong())
+q1a1.addEventListener("click", q1LowSleep);
+q1a2.addEventListener("click", q1LowSleep);
+q1a3.addEventListener("click", nothingWrong);
+q1a4.addEventListener("click", nothingWrong)
 
-q2a1.addEventListener("click", q2Yes());
-q2a2.addEventListener("click", nothingWrong());
+q2a1.addEventListener("click", q2Yes);
+q2a2.addEventListener("click", nothingWrong);
 
-q3a1.addEventListener("click", nothingWrong());
-q3a2.addEventListener("click", q3No());
+q3a1.addEventListener("click", nothingWrong);
+q3a2.addEventListener("click", q3No);
 
-q4a1.addEventListener("click", q4Yes());
-q4a2.addEventListener("click", nothingWrong());
+q4a1.addEventListener("click", q4Yes);
+q4a2.addEventListener("click", nothingWrong);
 
-q5a1.addEventListener("click", q5Yes());
-q5a2.addEventListener("click", nothingWrong());
+q5a1.addEventListener("click", q5Yes);
+q5a2.addEventListener("click", nothingWrong);
 
-q6a1.addEventListener("click", q6Yes());
-q6a2.addEventListener("click", q6No());
+q6a1.addEventListener("click", q6Yes);
+q6a2.addEventListener("click", q6No);
 
 // restart.addEventListener("click", restartQuiz);
 
 
 function q1LowSleep(){
-  tired+=5;
-  upset+=1;
-  stressed+=1;
+  tiredScore+=5;
+  upsetScore+=1;
+  stressedScore+=1;
   questionsAnswered++;
   checkIfComplete();
 }
 
 function q2Yes(){
-  stressed+=3;
-  upset+=1
+  stressedScore+=3;
+  upsetScore+=1
   questionsAnswered++;
   checkIfComplete();
 }
 
 function q3No(){
-  bored+=2;
-  stressed++;
-  upset++;
+  boredScore+=2;
+  stressedScore++;
+  upsetScore++;
   questionsAnswered++;
   checkIfComplete();
 }
 
 function q4Yes(){
-  stressed+=2;
-  upset++;
+  stressedScore+=2;
+  upsetScore++;
   questionsAnswered++;
   checkIfComplete();
 }
 
 function q5Yes(){
-  stressed+=3;
-  tired++;
-  upset++;
+  stressedScore+=3;
+  tiredScore++;
+  upsetScore++;
   questionsAnswered++;
   checkIfComplete();
 }
 
 function q6Yes(){
-  bored+=5;
+  boredScore+=5;
   questionsAnswered++;
   checkIfComplete();
 }
@@ -103,34 +103,61 @@ function q6No(){
 
 
 function nothingWrong(){
-  happy+=2;
-  bored++;
+  happyScore+=2;
+  boredScore++;
   questionsAnswered++;
   checkIfComplete();
 }
 
 function checkIfComplete(){
   
-  if(questionsAnswered==6){
-    var emotion = Math.max(boredScore, happyScore,stressedScore, tiredScore, upsetScore);
+  // if(questionsAnswered==6){
+  //   var emotion = Math.max(boredScore, happyScore,stressedScore, tiredScore, upsetScore);
+  //   let emotionName = "";
+  //   if(emotion == boredScore){
+  //     emotionName = "bored"
+  //   }
+  //   if(emotion == happyScore){
+  //     emotionName = "happy"
+  //   }
+  //   if(emotion == stressedScore){
+  //     emotionName = "stressed"
+  //   }
+  //   if(emotion == tiredScore){
+  //     emotionName = "tired"
+  //   }
+  //   if(emotion == upsetScore){
+  //     emotionName = "upset"
+  //   }
+
+  //   var resultElement = document.getElementById("result");
+  //   resultElement.innerHTML = "You are most likely "+ emotionName;
+  // }
+  if (questionsAnswered == 6) {
+    var emotion = Math.max(boredScore, happyScore, stressedScore, tiredScore, upsetScore);
     let emotionName = "";
-    if(emotion = boredScore){
-      emotionName = "bored"
+    if (emotion == boredScore) {
+        emotionName = "bored";
     }
-    if(emotion = happyScore){
-      emotionName = "happy"
+    if (emotion == happyScore) {
+        emotionName = "happy";
     }
-    if(emotion = stressedScore){
-      emotionName = "stressed"
+    if (emotion == stressedScore) {
+        emotionName = "stressed";
     }
-    if(emotion = tiredScore){
-      emotionName = "tired"
+    if (emotion == tiredScore) {
+        emotionName = "tired";
     }
-    if(emotion = upsetScore){
-      emotionName = "upset"
+    if (emotion == upsetScore) {
+        emotionName = "upset";
     }
-    result.innerHTML = "You are most likely "+ emotionName;
-  }
+
+    // Get the result element by its id
+    var resultElement = document.getElementById("result");
+
+    // Update the content of the result element
+    resultElement.innerHTML = "You are most likely " + emotionName;
+}
 }
 
 
