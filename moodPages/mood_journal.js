@@ -27,7 +27,12 @@ var q5a2 = document.getElementById("q5a2");
 var q6a1 = document.getElementById("q6a1");
 var q6a2 = document.getElementById("q6a2");
 
-var button = document.getElementById('activeButton');
+var buttons = document.querySelectorAll('button')
+buttons.forEach(function (button) {
+  button.addEventListener('click', function () {
+    button.classList.toggle('active');
+  });
+});
 
 
 //work on this
@@ -51,9 +56,6 @@ q5a2.addEventListener("click", nothingWrong);
 q6a1.addEventListener("click", q6Yes);
 q6a2.addEventListener("click", q6No);
 
-button.addEventListener('click', function(){
-  button.classList.toggle('active');
-});
 
 
 // restart.addEventListener("click", restartQuiz);

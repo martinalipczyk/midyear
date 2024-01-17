@@ -2,6 +2,7 @@ body {
     font-family: Arial;
     background: white;
     color: rgb(255, 211, 161);  
+    background-color: beige;
 }
 
 h {
@@ -21,16 +22,25 @@ button {
     color: black;
     font-weight: bold;
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 20px;    
     vertical-align: top;    
     border: none;
     border-radius: 15px;
+    transition: background-color, 0.15s;
+    background-color: lightblue;
+}
+
+.active {
+    background-color:  rgb(4, 124, 164);
+    color: white;
 }
 
 button:active, button.active {
-    background-color: black;
+    background-color:  rgb(4, 124, 164);
+    color: white;
 }
+
 button:hover{
-    background-color:lightpink;
+    opacity: 0.6;
 }
 
