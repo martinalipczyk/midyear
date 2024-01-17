@@ -32,22 +32,36 @@
   "what is one thing that you would like to let go of? why?", 
   "what is one thing that you would like to do more of? why?"];
 
-  // Function to generate a random word
-  function generateRandomWord() {
-    // Get a random index from the word bank
+  //generate random prompt
+  function generateRandomPrompt() {
+    //get a random index from the word bank
     const randomIndex = Math.floor(Math.random() * wordBank.length);
     
-    // Get the word at the random index
-    const randomWord = wordBank[randomIndex];
+    //get the words at a random index
+    const randomPrompt = wordBank[randomIndex];
     
-    // Display the random word on the screen
-    document.getElementById("displayWord").textContent = `${randomWord}`;
+    //display random words on the screen
+    document.getElementById("displayWord").textContent = `${randomPrompt}`;
   }
 
-  // Add event listener to the button
-  document.getElementById("generateButton").addEventListener("click", generateRandomWord);
+  // button employs function
+  document.getElementById("generateButton").addEventListener("click", generateRandomPrompt);
 </script>
     </div>
+
+    <label for="inputBox"></label>
+    <textarea id="inputBox" rows="5" cols="50"></textarea>
+
+    <button onclick="displayText()">add text to journal</button>
+
+    <div id="output"></div>
+
+    <script>
+        function displayText() {
+            var inputText = document.getElementById("inputBox").value;
+            document.getElementById("output").innerHTML = "" + inputText;
+        }
+    </script>
 
     <nav>
 </body>
