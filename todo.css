@@ -105,7 +105,7 @@ img {
 .button-t:not(:disabled):focus {
   outline: 0;
   background: #2e8bd1;
-  box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
 }
 
 .button-t:disabled {
