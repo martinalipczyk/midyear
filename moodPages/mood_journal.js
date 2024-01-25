@@ -143,10 +143,17 @@ function checkIfComplete(){
   //   resultElement.innerHTML = "You are most likely "+ emotionName;
   // }
   if (questionsAnswered == 6) {
+    // Get the result element by its id
+    var resultElement = document.getElementById("result");
+    var giveReccomendation = document.getElementById("reccomendations");
+
     var emotion = Math.max(boredScore, happyScore, stressedScore, tiredScore, upsetScore);
     let emotionName = "";
+    const button = document.querySelector('button');
     if (emotion == boredScore) {
         emotionName = "bored";
+        button.innerHTML = "play a minigame!";
+        button.addEventListener("click", window.location.href = 'bored.html');
     }
     if (emotion == happyScore) {
         emotionName = "happy";
@@ -161,11 +168,12 @@ function checkIfComplete(){
         emotionName = "upset";
     }
 
-    // Get the result element by its id
-    var resultElement = document.getElementById("result");
+    
 
     // Update the content of the result element
     resultElement.innerHTML = "You are most likely " + emotionName;
+
+    
 }
 }
 
