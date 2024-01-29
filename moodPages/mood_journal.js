@@ -264,13 +264,9 @@ function checkIfComplete() {
     // Update the content of the result element
     resultElement.innerHTML = "You are most likely " + emotionName;
 
-<<<<<<< HEAD
-    
-=======
     if (result == "bored") {
       
     }
->>>>>>> 3330efc2f154fe3dacaf97e077d01b594c3cccd9
 }
 }
 

@@ -7,7 +7,7 @@
     <title>picture upload!!</title>
     <link rel="stylesheet" href="/styling.css" />
     <script src="javascript.js" defer></script>
-    <button id = "home"  onclick="window.location.href='home.html'">home</button>
+    <button id = "home"  onclick="window.location.href='/home'">home</button>
     <h1>daily image</h1>
     <br><br>
     <h2>what happened today?</h2>
@@ -27,23 +27,13 @@
         };
       </script>
     
-    <form>
-      <label for="text-input">enter a caption:</label>
-      <input type="text" id="text-input" name="text-input">
-      <button type="button" onclick="displayText()">add to page</button>
-    </form>
-    
-    <p id="outtext"></p>
-    
-    <script>
-      function displayText() {
-        const input = document.getElementById("text-input").value;
-        console.log(input);
-        document.getElementById("outtext").textContent = input;
-        console.log(document.getElementById("outtext"));
-      }
-       </script>
-       </body>
+  <form>
+    <label for="text-input">enter a caption:</label>
+    <input type="text" id="text-input" name="text-input">
+    <button type="button" onclick="displayText()">add to page</button>
+  </form>
+  
+  <p id="output"></p>
   
   <script>
     function displayText() {
@@ -54,6 +44,5 @@
     </body>
 
 
-  </script>
 
 </html>
