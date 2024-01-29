@@ -34,6 +34,89 @@ buttons.forEach(function (button) {
   });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.ques1');
+
+  buttons.forEach(button => {
+      button.addEventListener('click', function () {
+          buttons.forEach(btn => {
+              btn.classList.remove('active');
+          });
+
+          button.classList.add('active');
+      });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.ques2');
+
+  buttons.forEach(button => {
+      button.addEventListener('click', function () {
+          buttons.forEach(btn => {
+              btn.classList.remove('active');
+          });
+
+          button.classList.add('active');
+      });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.ques3');
+
+  buttons.forEach(button => {
+      button.addEventListener('click', function () {
+          buttons.forEach(btn => {
+              btn.classList.remove('active');
+          });
+
+          button.classList.add('active');
+      });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.ques4');
+
+  buttons.forEach(button => {
+      button.addEventListener('click', function () {
+          buttons.forEach(btn => {
+              btn.classList.remove('active');
+          });
+
+          button.classList.add('active');
+      });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.ques5');
+
+  buttons.forEach(button => {
+      button.addEventListener('click', function () {
+          buttons.forEach(btn => {
+              btn.classList.remove('active');
+          });
+
+          button.classList.add('active');
+      });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.ques6');
+
+  buttons.forEach(button => {
+      button.addEventListener('click', function () {
+          buttons.forEach(btn => {
+              btn.classList.remove('active');
+          });
+
+          button.classList.add('active');
+      });
+  });
+});
 
 //work on this
 q1a1.addEventListener("click", q1LowSleep);

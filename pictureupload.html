@@ -27,13 +27,23 @@
         };
       </script>
     
-  <form>
-    <label for="text-input">enter a caption:</label>
-    <input type="text" id="text-input" name="text-input">
-    <button type="button" onclick="displayText()">add to page</button>
-  </form>
-  
-  <p id="output"></p>
+    <form>
+      <label for="text-input">enter a caption:</label>
+      <input type="text" id="text-input" name="text-input">
+      <button type="button" onclick="displayText()">add to page</button>
+    </form>
+    
+    <p id="outtext"></p>
+    
+    <script>
+      function displayText() {
+        const input = document.getElementById("text-input").value;
+        console.log(input);
+        document.getElementById("outtext").textContent = input;
+        console.log(document.getElementById("outtext"));
+      }
+       </script>
+       </body>
   
   <script>
     function displayText() {
@@ -44,5 +54,6 @@
     </body>
 
 
+  </script>
 
 </html>
