@@ -2,13 +2,13 @@
 const express = require( "express" );
 const app = express();
 const port = 3000;
+const logger = require("morgan");
+
 
 
 // define middleware that logs all incoming requests
-app.use((req, res, next) => {
-    console.log(`${req.method} ${req.url}`);
-    next();
-} );
+app.use(logger("dev"));
+
 
 // define a route for the default home page
 app.get( "/", ( req, res ) => {
