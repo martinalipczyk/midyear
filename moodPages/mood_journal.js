@@ -201,30 +201,38 @@ function nothingWrong(){
   checkIfComplete();
 }
 
-function checkIfComplete(){
-  
-  // if(questionsAnswered==6){
-  //   var emotion = Math.max(boredScore, happyScore,stressedScore, tiredScore, upsetScore);
-  //   let emotionName = "";
-  //   if(emotion == boredScore){
-  //     emotionName = "bored"
-  //   }
-  //   if(emotion == happyScore){
-  //     emotionName = "happy"
-  //   }
-  //   if(emotion == stressedScore){
-  //     emotionName = "stressed"
-  //   }
-  //   if(emotion == tiredScore){
-  //     emotionName = "tired"
-  //   }
-  //   if(emotion == upsetScore){
-  //     emotionName = "upset"
-  //   }
+function checkIfComplete() {
+  var activeButtons = document.querySelectorAll('.active');
+  if (activeButtons.length === 6) {
+      // Only consider the active buttons for scoring
+      activeButtons.forEach(function (button) {
+          switch (button.id) {
+              case 'q1a1':
+              case 'q1a2':
+                  q1LowSleep();
+                  break;
+              case 'q2a1':
+                  q2Yes();
+                  break;
+              case 'q3a2':
+                  q3No();
+                  break;
+              case 'q4a1':
+                  q4Yes();
+                  break;
+              case 'q5a1':
+                  q5Yes();
+                  break;
+              case 'q6a1':
+                  q6Yes();
+                  break;
+              case 'q6a2':
+                  q6No();
+                  break;
+          }
+      });
+  }
 
-  //   var resultElement = document.getElementById("result");
-  //   resultElement.innerHTML = "You are most likely "+ emotionName;
-  // }
   if (questionsAnswered == 6) {
     var emotion = Math.max(boredScore, happyScore, stressedScore, tiredScore, upsetScore);
     let emotionName = "";
@@ -249,6 +257,10 @@ function checkIfComplete(){
 
     // Update the content of the result element
     resultElement.innerHTML = "You are most likely " + emotionName;
+
+    if (result == "bored") {
+      
+    }
 }
 }
 
