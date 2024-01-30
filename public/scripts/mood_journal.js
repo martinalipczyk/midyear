@@ -243,8 +243,8 @@ function checkIfComplete() {
     const button = document.querySelector('button');
     if (emotion == boredScore) {
         emotionName = "bored";
-        button.innerHTML = "play a minigame!";
-        button.addEventListener("click", window.location.href = 'bored.html');
+        // button.innerHTML = "play a minigame!";
+        // button.addEventListener("click", window.location.href = 'bored.html');
     }
     if (emotion == happyScore) {
         emotionName = "happy";
@@ -264,22 +264,22 @@ function checkIfComplete() {
     // Update the content of the result element
     resultElement.innerHTML = "You are most likely " + emotionName;
 
-    // var finishButton = document.getElementById('finish_button');
-
-    // // Add a click event listener to the button
-    // finishButton.addEventListener('click', function () {
-    //     if (emotionName == "bored") {
-    //         // Change the location based on the condition
-    //         window.location.href = 'bored.html';
-    //     } else if (emotionName == "happy") {
-    //         window.location.href = 'happy.html';
-    //     } else if (emotionName == "tired") {
-    //         window.location.href = 'tired.html';
-    //     } else if (emotionName == "stressed") {
-    //         window.location.href = "stressed.html";
-    //     } else if (emotionName == "upset") {
-    //         window.location.href = "upset.html";
-    //     }
-    // });
+    var finishButton = document.getElementById('finish_button');
+    
+    // Add a click event listener to the button
+    finishButton.addEventListener('click', function () {
+        if (emotionName == "bored") {
+            // Change the location based on the condition
+            window.location.href = 'bored.html';
+        } else if (emotionName == "happy") {
+            window.location.href = 'happy.html';
+        } else if (emotionName == "tired") {
+            window.location.href = 'tired.html';
+        } else if (emotionName == "stressed") {
+            window.location.href = "stressed.html";
+        } else if (emotionName == "upset") {
+            window.location.href = "upset.html";
+        }
+    });
 }
 }
