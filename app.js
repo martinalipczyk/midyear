@@ -54,6 +54,8 @@ app.get( "/pictureupload", ( req, res ) => {
     res.sendFile( __dirname + "/views/pictureupload.html" );
 } );
 
+app.use(express.static(__dirname + '/public'));
+
 // start the server
 app.listen( port, () => {
     console.log(`App server listening on ${ port }. (Go to http://localhost:${ port })` );
