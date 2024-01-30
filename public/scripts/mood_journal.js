@@ -262,6 +262,7 @@ function checkIfComplete() {
     
 
     // Update the content of the result element
+    var resultElement = document.getElementById("result");
     resultElement.innerHTML = "You are most likely " + emotionName;
 
     var finishButton = document.getElementById('finish_button');
