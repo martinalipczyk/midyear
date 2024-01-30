@@ -20,15 +20,7 @@ app.get( "/", ( req, res ) => {
 app.get( "/home", ( req, res ) => {
     res.sendFile( __dirname + "/views/home.html" );
 } );
-// define a route for the assignment list page
-app.get( "/assignments", ( req, res ) => {
-    res.sendFile( __dirname + "/views/assignments.html" );
-} );
 
-// define a route for the assignment detail page
-app.get( "/assignments/detail", ( req, res ) => {
-    res.sendFile( __dirname + "/views/detail.html" );
-} );
 
 app.get( "/createaccount", ( req, res ) => {
     res.sendFile( __dirname + "/views/createaccount.html" );
