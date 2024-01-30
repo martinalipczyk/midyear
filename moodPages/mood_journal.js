@@ -258,11 +258,22 @@ function checkIfComplete() {
     // Update the content of the result element
     resultElement.innerHTML = "You are most likely " + emotionName;
 
-    if (result == "bored") {
-      
+    var a = document.getElementById('finish_button');
+
+// Add a click event listener to the button
+    myButton.addEventListener('click', function () {
+    if (emotionName == "bored" ) {
+        // Change the location based on the condition
+        window.location.href = 'https://bored.html';
+    } else {
+        // Change the location for another condition
+        window.location.href = 'https://example.com/page2';
     }
+});
 }
 }
+
+
 
 
 
