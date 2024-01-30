@@ -264,66 +264,22 @@ function checkIfComplete() {
     // Update the content of the result element
     resultElement.innerHTML = "You are most likely " + emotionName;
 
-    var a = document.getElementById('finish_button');
+    // var finishButton = document.getElementById('finish_button');
 
-// Add a click event listener to the button
-    myButton.addEventListener('click', function () {
-    if (emotionName == "bored" ) {
-        // Change the location based on the condition
-        window.location.href = 'https://bored.html';
-    } else {
-        // Change the location for another condition
-        window.location.href = 'https://example.com/page2';
-    }
-});
+    // // Add a click event listener to the button
+    // finishButton.addEventListener('click', function () {
+    //     if (emotionName == "bored") {
+    //         // Change the location based on the condition
+    //         window.location.href = 'bored.html';
+    //     } else if (emotionName == "happy") {
+    //         window.location.href = 'happy.html';
+    //     } else if (emotionName == "tired") {
+    //         window.location.href = 'tired.html';
+    //     } else if (emotionName == "stressed") {
+    //         window.location.href = "stressed.html";
+    //     } else if (emotionName == "upset") {
+    //         window.location.href = "upset.html";
+    //     }
+    // });
 }
 }
-
-
-
-
-
-
-// function katniss() {
-//   katnissScore += 1;
-//   questionsAnswered += 1;
-
-//   console.log("question count = " + questionsAnswered + " katniss score = " + katnissScore);
-
-//   if(questionsAnswered == 3){
-//     console.log("The quiz is done!");
-//     updateResult();
-//   }
-// }
-
-// function peeta() {
-//   peetaScore += 1;
-//   questionsAnswered += 1;
-
-//    console.log("question count = " + questionsAnswered + " peeta score = " + peetaScore);
-
-//   if(questionsAnswered == 3){
-//     console.log("The quiz is done!");
-//     updateResult();
-//   }
-// }
-
-
-// function updateResult(){
-//   if(katnissScore >= 2){
-//     console.log("You are Katniss Everdeen!");
-//     result.innerHTML = "You are Katniss Everdeen!";
-//   }
-//   else if(peetaScore >=2){
-//     console.log("You are Peeta Mellark!");
-//     result.innerHTML = "You are Peeta Mellark!";
-//   }
-// }
-
-// function restartQuiz(){
-//   katnissScore = 0;
-//   peetaScore = 0;
-//   questionsAnswered = 0;
-//   result.innerHTML = "Your result is...";
-//   console.log("Katniss score: "+katnissScore + ", Peeta Score: "+ peetaScore + ", Questions Answered: "+ questionsAnswered);
-// }
