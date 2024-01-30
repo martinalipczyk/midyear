@@ -12,10 +12,10 @@ document.querySelector('#push').onclick = function(){
         document.querySelector('#tasks').innerHTML += `
             <div class="container">
                 <div class = "center-align"
-                <span id="taskname">
+                <span class = "col" id="taskname">
                     ${document.querySelector('#newtask input').value}
                 </span>
-                <a href = "#" class="btn" id = "delete>
+                <a href = "#" class="col btn" id = "delete>
                     <i class="far fa-trash-alt"></i>done
                 </a>
                 </div>
