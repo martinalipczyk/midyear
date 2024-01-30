@@ -10,17 +10,19 @@ document.querySelector('#push').onclick = function(){
     else{
       console.log(document.querySelector('#newtask input').value)
         document.querySelector('#tasks').innerHTML += `
-            <div class="task">
+            <div class="container">
+                <div class = "center-align"
                 <span id="taskname">
                     ${document.querySelector('#newtask input').value}
                 </span>
-                <button class="delete">
-                    <i class="far fa-trash-alt"></i>DONE
-                </button>
+                <a href = "#" class="btn" id = "delete>
+                    <i class="far fa-trash-alt"></i>done
+                </a>
+                </div>
             </div>
         `;
         document.getElementById("txt").value = "";
-        var current_tasks = document.querySelectorAll(".delete");
+        var current_tasks = document.querySelectorAll("#delete");
         for(var i=0; i<current_tasks.length; i++){
             current_tasks[i].onclick = function(){
                 this.parentNode.remove();
@@ -42,15 +44,17 @@ document.querySelector('#push').onclick = function(){
       else{
         console.log(document.querySelector('#newtask input').value)
           document.querySelector('#tasks').innerHTML += `
-              <div class="task">
-                  <span id="taskname">
-                      ${document.querySelector('#newtask input').value}
-                  </span>
-                  <button class="delete">
-                    <i class="far fa-trash-alt"></i>DONE
-                </button>
+          <div class="container">
+              <div class = "center-align"
+              <span id="taskname">
+                  ${document.querySelector('#newtask input').value}
+              </span>
+              <a href = "#" class="btn" id = "delete>
+                  <i class="far fa-trash-alt"></i>done
+              </a>
               </div>
-          `;
+          </div>
+      `;
           document.getElementById("txt").value = "";
           var current_tasks = document.querySelectorAll(".delete");
           for(var i=0; i<current_tasks.length; i++){

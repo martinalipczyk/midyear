@@ -46,6 +46,26 @@ app.get( "/pictureupload", ( req, res ) => {
     res.sendFile( __dirname + "/views/pictureupload.html" );
 } );
 
+app.get( "/moodtracker/bored", ( req, res ) => {
+    res.sendFile( __dirname + "/moodPages/bored.html" );
+} );
+
+app.get( "/moodtracker/happy", ( req, res ) => {
+    res.sendFile( __dirname + "/moodPages/happy.html" );
+} );
+
+app.get( "/moodtracker/stressed", ( req, res ) => {
+    res.sendFile( __dirname + "/moodPages/stressed.html" );
+} );
+
+app.get( "/moodtracker/tired", ( req, res ) => {
+    res.sendFile( __dirname + "/moodPages/tired.html" );
+} );
+
+app.get( "/moodtracker/upset", ( req, res ) => {
+    res.sendFile( __dirname + "/moodPages/upset.html" );
+} );
+
 app.use(express.static(__dirname + '/public'));
 
 // start the server
