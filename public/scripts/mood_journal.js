@@ -271,15 +271,15 @@ function checkIfComplete() {
     finishButton.addEventListener('click', function () {
         if (emotionName == "bored") {
             // Change the location based on the condition
-            window.location.href = 'bored.html';
+            window.location.href = '/moodtracker/bored';
         } else if (emotionName == "happy") {
-            window.location.href = 'happy.html';
+            window.location.href = '/moodtracker/happy';
         } else if (emotionName == "tired") {
-            window.location.href = 'tired.html';
+            window.location.href = '/moodtracker/tired';
         } else if (emotionName == "stressed") {
-            window.location.href = "stressed.html";
+            window.location.href = "/moodtracker/stressed";
         } else if (emotionName == "upset") {
-            window.location.href = "upset.html";
+            window.location.href = "/moodtracker/upset";
         }
     });
 }
