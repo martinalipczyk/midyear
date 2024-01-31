@@ -73,7 +73,7 @@ function q6No(){
 
 
 function nothingWrong(){
-    updateScore('happy', 2);
+    updateScore('happy', 3);
     updateScore('bored', 1);
     questionsAnswered++;
 }
@@ -84,11 +84,25 @@ function checkIfComplete() {
         activeButtons.forEach(function (button) {
             switch (button.id) {
                 case 'q1a1':
+                    q1LowSleep();
+                    break;
                 case 'q1a2':
                     q1LowSleep();
                     break;
+                case 'q1a3':
+                    nothingWrong();
+                    break;
+                case 'q1a4':
+                    nothingWrong();
+                    break;
                 case 'q2a1':
                     q2Yes();
+                    break;
+                case 'q2a2':
+                    nothingWrong();
+                    break;
+                case 'q3a1':
+                    nothingWrong();
                     break;
                 case 'q3a2':
                     q3No();
@@ -96,8 +110,14 @@ function checkIfComplete() {
                 case 'q4a1':
                     q4Yes();
                     break;
+                case 'q4a2':
+                    nothingWrong();
+                    break;
                 case 'q5a1':
                     q5Yes();
+                    break;
+                case 'q5a2':
+                    nothingWrong();
                     break;
                 case 'q6a1':
                     q6Yes();
