@@ -13,24 +13,24 @@
     <title>create your account</title>
 </head>
 <body>
-    <form method = "GET">
+    <form method = "post" id="registrationForm" action="/register" >
         <div class = container>
             <h1 class = "orange lighten-4 text">create your account</h1>
             <label for = "firstname">what's your first name?</label>
-            <input type = "text" id = "firstname" placeholder = "Spongebob" required>
+            <input type = "text" name = "first_name" placeholder = "Spongebob" required>
             <br>
             <label for = "lastname">what's your last name?</label>
-            <input type = "text" id = "lastname" placeholder = "Squarepants" required>
+            <input type = "text" name = "last_name" placeholder = "Squarepants" required>
             <br>
             <label for = "username">choose your username.</label>
-            <input type = "text" id = "username" minlength = "6" placeholder = "Spongebob" required>
+            <input type = "text" name = "username" minlength = "6" placeholder = "Spongebob" required>
             <br>
             <label for = "password">choose your password.</label>
-            <input type = "password" id = "password" minlength = "6" placeholder = "Spongebob" required>
+            <input type = "password" name = "password" minlength = "6" placeholder = "Spongebob" required>
             <br>
             
             <label for = "email">email:</label>
-            <input type = "email" id = "email" placeholder = "squarepants@gmail.com">
+            <input type = "email" name = "email" placeholder = "squarepants@gmail.com">
 
             <input type = "submit" a href = "#" class = "btn orange lighten-4"></a>
             <input type = "reset" a href = "#" class = "btn orange lighten-4"></a>
