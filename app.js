@@ -3,6 +3,13 @@ const express = require( "express" );
 const app = express();
 const port = 3000;
 const logger = require("morgan");
+const bodyParser = require('body-parser');
+const db = require('./db/db_connection.js'); // Adjust the path accordingly
+
+
+// Use body-parser middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Configure Express to use EJS
 app.set( "views",  __dirname + "/views");
@@ -74,7 +81,7 @@ app.use(express.static(__dirname + '/public'));
 
 //im trying this pls plsplspslpslsplp work
 app.post('/register', (req, res) => {
-    const { username, password } = req.body;
+    const { first_name, last_name, username, password, email } = req.body;
   
     // You may want to add validation and hashing for the password
   
