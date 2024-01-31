@@ -2,10 +2,14 @@ const db = require("./db_connection");
 
 /**** Delete *CONTENTS OF* existing tables (but not dropping tables themselves) ****/
 
-const delete_assignments_table_sql = "DELETE FROM assignments;"
+const delete_user_table_sql = "DELETE FROM user;"
 
-db.execute(delete_assignments_table_sql);
+db.execute(delete_user_table_sql);
 
-const delete_subjects_table_sql = "DELETE FROM subjects;"
+const delete_journals_table_sql = "DELETE FROM journals;"
 
-db.execute(delete_subjects_table_sql);
+const reset = "ALTER TABLE user AUTO_INCREMENT=0; "
+
+db.execute(delete_journals_table_sql);
+db.execute(reset);
+db.end();
