@@ -3,11 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "/stylesheets/moodtracker.css"> 
+    <!-- <link rel = "stylesheet" href = "/stylesheets/moodtracker.css">  -->
     <title>Mood Journal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
+        button {
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            font-size: 14px;
+            color: black;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 20px;    
+            vertical-align: top;    
+            border: none;
+            border-radius: 15px;
+            transition: background-color, 0.15s, color, 0.15;
+            background-color: lightblue;
+        }
+
         .active {
             background-color:  rgb(4, 124, 164);
             color: white;
@@ -18,19 +35,28 @@
             color: white;
         }
 
+        .answer-choice {
+            display:inline-block;
+        }
+
+        .home {
+            text-align: center;
+        }
+
+
     </style>
     <script src="/scripts/mood_journal.js" defer></script>
 </head>
 <body>
     <div class = "home">
-        <button id = "home" onclick = "window.location.href='/home'">home</button>
+        <button class = "home" onclick = "window.location.href='/home'">home</button>
     </div>
     <div class =  "intro">
-        <h1>What's your mood?</h1>
-        <p>If you're struggling to understand how you feel right now, take this short quiz and we'll help you out!</p>
+        <h1 class = "center-align">What's your mood?</h1>
+        <p class = "center-align">If you're struggling to understand how you feel right now, take this short quiz and we'll help you out!</p>
     </div>
     
-    <h2>1. How much sleep did you get last night?</h2>
+    <h4>1. How much sleep did you get last night?</h2>
 		<div class="answer-choice">
             <button id="q1a1" data-question = "1"> &#60; 3 hours</button>
         </div>
@@ -44,7 +70,7 @@
             <button id="q1a4" data-question = "1"> &gt; 9 hours</button>
         </div>
 
-    <h2>2. Is there currently something weighing on your mind? </h2>
+    <h4>2. Is there currently something weighing on your mind? </h2>
         <div class="answer-choice">
             <button id="q2a1" data-question = "2"> yes </button>
         </div>
@@ -52,7 +78,7 @@
             <button id="q2a2" data-question = "2"> no </button>
         </div>
     
-    <h2>3. Do you feel like you've been productive with your time lately?</h2>
+    <h4>3. Do you feel like you've been productive with your time lately?</h2>
         <div class="answer-choice">
             <button id="q3a1" data-question = "3"> yes </button>
         </div>
@@ -60,21 +86,21 @@
             <button id="q3a2" data-question = "3"> no </button>
         </div>
 
-    <h2>4. Have you recently been in a fight with someone? </h2>
+    <h4>4. Have you recently been in a fight with someone? </h2>
         <div class="answer-choice">
             <button id="q4a1" data-question = "4"> yes </button>
         </div>
         <div class="answer-choice">
             <button id="q4a2" data-question = "4"> no </button>
         </div>
-    <h2>5. Have there been any big changes in your life lately?</h2>
+    <h4>5. Have there been any big changes in your life lately?</h2>
         <div class="answer-choice">
             <button id="q5a1" data-question = "5"> yes </button>
         </div>
         <div class="answer-choice">
             <button id="q5a2" data-question = "5"> no </button>
         </div>
-    <h2>6. Are you taking this quiz our of bordom or because you're actually interested?</h2>
+    <h4>6. Are you taking this quiz our of bordom or because you're actually interested?</h2>
         <div class="answer-choice">
             <button id="q6a1" data-question = "6"> out of bordeom </button>
         </div>
