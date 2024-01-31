@@ -76,6 +76,10 @@ app.get( "/moodtracker/upset", ( req, res ) => {
     res.sendFile( __dirname + "/moodPages/upset.html" );
 } );
 
+app.get( "/journaling/viewJournals", ( req, res ) => {
+    res.sendFile( __dirname + "/views/viewJournals.html" );
+} );
+
 app.use(express.static(__dirname + '/public'));
 
 
