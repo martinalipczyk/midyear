@@ -275,8 +275,6 @@ function checkIfComplete() {
 // q6a1.addEventListener("click", q6Yes);
 // q6a2.addEventListener("click", q6No);
 
-
-
 // // restart.addEventListener("click", restartQuiz);
 
 

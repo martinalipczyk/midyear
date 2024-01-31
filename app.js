@@ -8,6 +8,7 @@ const logger = require("morgan");
 app.set( "views",  __dirname + "/views");
 app.set( "view engine", "ejs" );
 
+
 // define middleware that logs all incoming requests
 app.use(logger("dev"));
 
