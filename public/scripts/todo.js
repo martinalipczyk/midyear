@@ -10,16 +10,17 @@ document.querySelector('#push').onclick = function(){
     else{
       console.log(document.querySelector('#newtask input').value)
         document.querySelector('#tasks').innerHTML += `
-            <div class="container">
-                <div class = "center-align"
-                <span class = "col" id="taskname">
-                    ${document.querySelector('#newtask input').value}
-                </span>
-                <a href = "#" class="col btn" id = "delete>
-                    <i class="far fa-trash-alt"></i>done
-                </a>
-                </div>
-            </div>
+        <div class="container">
+        <div class = "row">
+            <span class = "col s3 left-align" id="taskname">
+                ${document.querySelector('#newtask input').value}
+            </span>
+            <a href = "#" class="col s2 btn right-align offset-s6" id = "delete">
+                <i class="far fa-trash-alt"></i>done
+            </a>
+            <p></p>
+        </div>
+        </div>
         `;
         document.getElementById("txt").value = "";
         var current_tasks = document.querySelectorAll("#delete");
@@ -45,16 +46,17 @@ document.querySelector('#push').onclick = function(){
         console.log(document.querySelector('#newtask input').value)
           document.querySelector('#tasks').innerHTML += `
           <div class="container">
-              <div class = "center-align"
-              <span id="taskname">
+          <div class = "row">
+              <span class = "col s3 left-align" id="taskname">
                   ${document.querySelector('#newtask input').value}
               </span>
-              <a href = "#" class="btn" id = "delete>
+              <a href = "#" class="col s2 btn right-align offset-s6" id = "delete">
                   <i class="far fa-trash-alt"></i>done
               </a>
-              </div>
+              <p></p>
           </div>
-      `;
+          </div>
+          `;
           document.getElementById("txt").value = "";
           var current_tasks = document.querySelectorAll(".delete");
           for(var i=0; i<current_tasks.length; i++){
