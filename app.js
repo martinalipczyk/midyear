@@ -4,7 +4,9 @@ const app = express();
 const port = 3000;
 const logger = require("morgan");
 
-
+// Configure Express to use EJS
+app.set( "views",  __dirname + "/views");
+app.set( "view engine", "ejs" );
 
 // define middleware that logs all incoming requests
 app.use(logger("dev"));
