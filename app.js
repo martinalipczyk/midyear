@@ -93,18 +93,32 @@ app.use(express.static(__dirname + '/public'));
 //im trying this pls plsplspslpslsplp work
 app.post('/register', (req, res) => {
     const { first_name, last_name, username, password, email } = req.body;
-  
-  
+
     const query = 'INSERT INTO user (first_name, last_name, username, password, email) VALUES (?, ?, ?, ?, ?)';
     db.query(query, [first_name, last_name, username, password, email], (err, results) => {
-      if (err) {
-        console.error('Error registering user: ' + err.message);
-        return res.status(500).json({ error: 'Internal Server Error' });
-      }
-      res.render('login');
-    });
+        if (err) {
+            console.error('Error registering user: ' + err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
 
-  });
+        // Assuming you are trying to log in the user after registration
+        db.query('SELECT user_id, username FROM user WHERE username = ? AND password = ?', [username, password], (err, results) => {
+            if (err) {
+                console.error('Error executing login query: ' + err.message);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+
+            if (results.length === 1) {
+                userid = results[0].user_id;
+                userna = results[0].username;
+                res.render('home', { user_id: userid, username: userna });
+            } else {
+                res.render('login');
+            }
+        });
+    });
+});
+
 
 
   
