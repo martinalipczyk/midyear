@@ -27,12 +27,8 @@ app.use(logger("dev"));
 
 
 app.get( "/", ( req, res ) => {
-    res.render("home");
-} );
-
-app.get( "/home", ( req, res ) => {
-    res.render("home");
-} );
+    res.render("login");
+} )
 
 
 app.get( "/createaccount", ( req, res ) => {
