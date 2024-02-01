@@ -21,6 +21,12 @@ app.use(logger("dev"));
 
 
 // define a route for the default home page
+// app.get( "/", ( req, res ) => {
+//     res.sendFile( __dirname + "/views/index.html" );
+// } );
+
+
+
 app.get( "/", ( req, res ) => {
     res.sendFile( __dirname + "/views/index.html" );
 } );
