@@ -28,17 +28,17 @@ app.get( "/", ( req, res ) => {
 
 
 app.get( "/home", ( req, res ) => {
-    res.sendFile( __dirname + "/views/home.html" );
+    res.sendFile( __dirname + "/views/home.ejs" );
 } );
 
 
 app.get( "/createaccount", ( req, res ) => {
-    res.sendFile( __dirname + "/views/createaccount.html" );
+    res.sendFile( __dirname + "/views/createaccount.ejs" );
 } );
 
 
 app.get( "/todo", ( req, res ) => {
-    res.sendFile( __dirname + "/views/todo.html" );
+    res.sendFile( __dirname + "/views/todo.ejs" );
 } );
 
 app.get( "/moodtracker", ( req, res ) => {
@@ -46,11 +46,11 @@ app.get( "/moodtracker", ( req, res ) => {
 } );
 
 app.get( "/journaling", ( req, res ) => {
-    res.sendFile( __dirname + "/views/journaling.html" );
+    res.sendFile( __dirname + "/views/journaling.ejs" );
 } );
 
 app.get( "/pictureupload", ( req, res ) => {
-    res.sendFile( __dirname + "/views/pictureupload.html" );
+    res.sendFile( __dirname + "/views/pictureupload.ejs" );
 } );
 
 app.get( "/moodtracker/bored", ( req, res ) => {
@@ -74,11 +74,11 @@ app.get( "/moodtracker/upset", ( req, res ) => {
 } );
 
 app.get( "/journaling/viewJournals", ( req, res ) => {
-    res.sendFile( __dirname + "/views/viewJournals.html" );
+    res.sendFile( __dirname + "/views/viewJournals.ejs" );
 } );
 
 app.get( "/login", ( req, res ) => {
-    res.sendFile( __dirname + "/views/login.html" );
+    res.sendFile( __dirname + "/views/login.ejs" );
 } );
 
 app.use(express.static(__dirname + '/public'));
