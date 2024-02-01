@@ -78,9 +78,8 @@ app.get( "/moodtracker/upset", ( req, res ) => {
     res.sendFile( __dirname + "/moodPages/upset.html" );
 } );
 
-const get_user_id = 'SELECT user_id FROM user' 
-app.get( "/journaling/viewJournals/:id", ( req, res ) => {
-    res.render( "viewJournals", {userna} );
+app.get( "/journaling/viewJournals", ( req, res ) => {
+    res.render( "viewJournals", );
 } );
 
 app.get( "/login", ( req, res ) => {
@@ -166,6 +165,19 @@ app.get('/getTasks/:user_id', (req, res) => {
             return res.status(500).json({ error: 'Internal Server Error' });
         }
         res.status(200).json(results);
+    });
+});
+
+app.post('/addtojournal', (req, res) => {
+    const { user_id, inputBox } = req.body;
+
+    const query = 'INSERT INTO journals (inputBox) VALUES (?) WHERE user_id = userid';
+    db.query(query, [user_id, inputBox], (err, results) => {
+        if (err) {
+            console.error('Error adding to journal: ' + err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.status(200).json({ message: 'added to journal' });
     });
 });
 
