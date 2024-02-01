@@ -78,9 +78,8 @@ app.get( "/moodtracker/upset", ( req, res ) => {
     res.sendFile( __dirname + "/moodPages/upset.html" );
 } );
 
-const get_user_id = 'SELECT user_id FROM user' 
-app.get( "/journaling/viewJournals/:id", ( req, res ) => {
-    res.render( "viewJournals", {userna} );
+app.get( "/journaling/viewJournals", ( req, res ) => {
+    res.render( "viewJournals", );
 } );
 
 app.get( "/login", ( req, res ) => {
@@ -93,18 +92,32 @@ app.use(express.static(__dirname + '/public'));
 //im trying this pls plsplspslpslsplp work
 app.post('/register', (req, res) => {
     const { first_name, last_name, username, password, email } = req.body;
-  
-  
+
     const query = 'INSERT INTO user (first_name, last_name, username, password, email) VALUES (?, ?, ?, ?, ?)';
     db.query(query, [first_name, last_name, username, password, email], (err, results) => {
-      if (err) {
-        console.error('Error registering user: ' + err.message);
-        return res.status(500).json({ error: 'Internal Server Error' });
-      }
-      res.render('login');
-    });
+        if (err) {
+            console.error('Error registering user: ' + err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
 
-  });
+        // Assuming you are trying to log in the user after registration
+        db.query('SELECT user_id, username FROM user WHERE username = ? AND password = ?', [username, password], (err, results) => {
+            if (err) {
+                console.error('Error executing login query: ' + err.message);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+
+            if (results.length === 1) {
+                userid = results[0].user_id;
+                userna = results[0].username;
+                res.render('home', { user_id: userid, username: userna });
+            } else {
+                res.render('login');
+            }
+        });
+    });
+});
+
 
 
   
@@ -123,7 +136,7 @@ app.post('/dologin', (req, res) => {
         userna = results[0].username;
         res.render('home', {user_id: userid, username: userna});
       } else {
-        res.status(401).json({ success: false, error: 'Invalid credentials' });
+        res.render("login");
       }
     });
 });
@@ -200,6 +213,19 @@ app.get('/getTasks/:user_id', (req, res) => {
             return res.status(500).json({ error: 'Internal Server Error' });
         }
         res.status(200).json(results);
+    });
+});
+
+app.post('/addtojournal', (req, res) => {
+    const { user_id, inputBox } = req.body;
+
+    const query = 'INSERT INTO journals (inputBox) VALUES (?) WHERE user_id = userid';
+    db.query(query, [user_id, inputBox], (err, results) => {
+        if (err) {
+            console.error('Error adding to journal: ' + err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.status(200).json({ message: 'added to journal' });
     });
 });
 

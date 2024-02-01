@@ -15,65 +15,73 @@
 </head>
 
 <body>
+  <container>
     <nav class = "white center-align">
-        <ul>
-            <row>
-          <li><a class = "black-text col" href ="/home">moodwise</a></li>
-          <li><a class = "black-text col" href ="/journaling">journaling</a></li>
-          <li><a class = "black-text col" href ="/moodtracker">mood tracker</a></li>
-          <li><a class = "black-text col " href = "/pictureupload">upload your picture!!</a></li>
-          <li><a class = "black-text col" href = "/todo">to-do</a></li>
-          </row>
-        </ul>
+      <ul>
+          <row>
+        <li><a class = "black-text col" href ="/home">moodwise</a></li>
+        <li><a class = "black-text col" href ="/journaling">journaling</a></li>
+        <li><a class = "black-text col" href ="/moodtracker">mood tracker</a></li>
+        <li><a class = "black-text col " href = "/pictureupload">upload your picture!!</a></li>
+        <li><a class = "black-text col" href = "/todo">to-do</a></li>
+        </row>
+      </ul>
 
-      </nav>
-      
-    <h1>daily journal</h1>
+    </nav>
+    
+    <h1 class = "center-align">daily journal</h1>
     <br><br>
-    <h2>what's on your mind?</h2>
-    <h3>if you need a prompt, click this button below:</h3>
-    <div class = "bttn1">
-        <button id="generateButton">give me a prompt</button>
-
-<!-- Display area for the randomly chosen word -->
-<p id="displayWord"></p>
-
-<script>
-  // Word bank
-  const wordBank = ["what are the top three things that you are grateful for today? why?", 
-  "what is one thing that you have been putting off that you can do today?", 
-  "what is one thing that you would like to learn more about? why?", 
-  "what is one thing that you would like to improve about yourself? why?", 
-  "what is one thing that you are looking forward to this week? why?", 
-  "what is one thing that you are proud of yourself for accomplishing recently? why?", 
-  "what is one thing that you would like to do differently in your life? why?", 
-  "what is one thing that you would like to achieve in the next year? why?", 
-  "what is one thing that you would like to let go of? why?", 
-  "what is one thing that you would like to do more of? why?"];
-
-  //generate random prompt
-  function generateRandomPrompt() {
-    //get a random index from the word bank
-    const randomIndex = Math.floor(Math.random() * wordBank.length);
-    
-    //get the words at a random index
-    const randomPrompt = wordBank[randomIndex];
-    
-    //display random words on the screen
-    document.getElementById("displayWord").textContent = `${randomPrompt}`;
-  }
-
-  // button employs function
-  document.getElementById("generateButton").addEventListener("click", generateRandomPrompt);
-</script>
+    <div class = "center-align">
+      <h3>what's on your mind?</h2>
+      <h4>if you need a prompt, click this button below:</h3>
+      <a class = "btn white black-text" id="generateButton">give me a prompt</a>
     </div>
 
+  <!-- Display area for the randomly chosen word -->
+    <p id="displayWord" class = "center-align"></p>
+  </container>
+
+  <script>
+    // Word bank
+    const wordBank = ["what are the top three things that you are grateful for today? why?", 
+    "what is one thing that you have been putting off that you can do today?", 
+    "what is one thing that you would like to learn more about? why?", 
+    "what is one thing that you would like to improve about yourself? why?", 
+    "what is one thing that you are looking forward to this week? why?", 
+    "what is one thing that you are proud of yourself for accomplishing recently? why?", 
+    "what is one thing that you would like to do differently in your life? why?", 
+    "what is one thing that you would like to achieve in the next year? why?", 
+    "what is one thing that you would like to let go of? why?", 
+    "what is one thing that you would like to do more of? why?"];
+  
+    //generate random prompt
+    function generateRandomPrompt() {
+      //get a random index from the word bank
+      const randomIndex = Math.floor(Math.random() * wordBank.length);
+      
+      //get the words at a random index
+      const randomPrompt = wordBank[randomIndex];
+      
+      //display random words on the screen
+      document.getElementById("displayWord").textContent = `${randomPrompt}`;
+    }
+  
+    // button employs function
+    document.getElementById("generateButton").addEventListener("click", generateRandomPrompt);
+  </script>
+  
+    <div>
+
+    <form id = "journaladd" action = "/addtojournal" method = "post">
     <label for="inputBox"></label>
-    <textarea id="inputBox" rows="5" cols="50"></textarea>
+    <input type = "text" name="inputBox" rows="5" cols="50">
 
-    <button onclick="displayText()">add text to journal</button>
+    <div class = "center-align">
+      <p class = "btn white black-text" onclick="displayText()">add text to journal</p>
+      <input type = submit>
+    </div>
 
-    <div id="output"></div>
+    <div class = "center-align" id="output"></div>
 
     <script>
         function displayText() {
@@ -81,11 +89,10 @@
             document.getElementById("output").innerHTML = "" + inputText;
         }
     </script>
-
-    <nav>
-
-        <h3>after your done with your journal, try:</h3>
-        <button id = "tracking your mood"  onclick="window.location.href='moodPages/moodtracker.html'">tracking your mood</button>
-        <button id = "uploading a daily picture"  onclick="window.location.href='pictureupload.html'">uploading a daily picture</button>
+    <div class = "center-align">
+      <h4>after your done with your journal, try:</h3>
+      <p class = "btn white black-text" id = "tracking your mood"  onclick="window.location.href='moodPages/moodtracker.html'">tracking your mood</p>
+      <p class = "btn white black-text" id = "uploading a daily picture"  onclick="window.location.href='pictureupload.html'">uploading a daily picture</p>
+    </div>
 </body>
 </html>
