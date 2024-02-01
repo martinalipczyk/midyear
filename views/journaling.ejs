@@ -38,37 +38,38 @@
     </div>
 
   <!-- Display area for the randomly chosen word -->
-    <p id="displayWord"></p>
+    <p id="displayWord" class = "center-align"></p>
   </container>
 
-<script>
-  // Word bank
-  const wordBank = ["what are the top three things that you are grateful for today? why?", 
-  "what is one thing that you have been putting off that you can do today?", 
-  "what is one thing that you would like to learn more about? why?", 
-  "what is one thing that you would like to improve about yourself? why?", 
-  "what is one thing that you are looking forward to this week? why?", 
-  "what is one thing that you are proud of yourself for accomplishing recently? why?", 
-  "what is one thing that you would like to do differently in your life? why?", 
-  "what is one thing that you would like to achieve in the next year? why?", 
-  "what is one thing that you would like to let go of? why?", 
-  "what is one thing that you would like to do more of? why?"];
-
-  //generate random prompt
-  function generateRandomPrompt() {
-    //get a random index from the word bank
-    const randomIndex = Math.floor(Math.random() * wordBank.length);
-    
-    //get the words at a random index
-    const randomPrompt = wordBank[randomIndex];
-    
-    //display random words on the screen
-    document.getElementById("displayWord").textContent = `${randomPrompt}`;
-  }
-
-  // button employs function
-  document.getElementById("generateButton").addEventListener("click", generateRandomPrompt);
-</script>
+  <script>
+    // Word bank
+    const wordBank = ["what are the top three things that you are grateful for today? why?", 
+    "what is one thing that you have been putting off that you can do today?", 
+    "what is one thing that you would like to learn more about? why?", 
+    "what is one thing that you would like to improve about yourself? why?", 
+    "what is one thing that you are looking forward to this week? why?", 
+    "what is one thing that you are proud of yourself for accomplishing recently? why?", 
+    "what is one thing that you would like to do differently in your life? why?", 
+    "what is one thing that you would like to achieve in the next year? why?", 
+    "what is one thing that you would like to let go of? why?", 
+    "what is one thing that you would like to do more of? why?"];
+  
+    //generate random prompt
+    function generateRandomPrompt() {
+      //get a random index from the word bank
+      const randomIndex = Math.floor(Math.random() * wordBank.length);
+      
+      //get the words at a random index
+      const randomPrompt = wordBank[randomIndex];
+      
+      //display random words on the screen
+      document.getElementById("displayWord").textContent = `${randomPrompt}`;
+    }
+  
+    // button employs function
+    document.getElementById("generateButton").addEventListener("click", generateRandomPrompt);
+  </script>
+  
     <div>
 
     <form id = "journaladd" action = "/addtojournal" method = "post">
