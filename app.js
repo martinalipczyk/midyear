@@ -5,6 +5,9 @@ const port = 3000;
 const logger = require("morgan");
 const bodyParser = require('body-parser');
 const db = require('./db/db_connection.js'); // Adjust the path accordingly
+let userna = null;
+let userid = null;
+
 
 // Use body-parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,16 +33,17 @@ app.get( "/", ( req, res ) => {
 } )
 
 app.get( "/home", ( req, res ) => {
-    res.render("home");
+    res.render('home', {user_id: userid, username: userna});
+    // app.post('/dologin', (req, res));
 } )
 
 app.get( "/createaccount", ( req, res ) => {
-    res.render("createaccount" );
+    res.render("createaccount");
 } );
 
 
 app.get( "/todo", ( req, res ) => {
-    res.render( "todo" );
+    res.render('todo', {user_id: userid, username: userna});
 } );
 
 app.get( "/moodtracker", ( req, res ) => {
@@ -74,8 +78,9 @@ app.get( "/moodtracker/upset", ( req, res ) => {
     res.sendFile( __dirname + "/moodPages/upset.html" );
 } );
 
-app.get( "/journaling/viewJournals", ( req, res ) => {
-    res.render( "viewJournals" );
+const get_user_id = 'SELECT user_id FROM user' 
+app.get( "/journaling/viewJournals/:id", ( req, res ) => {
+    res.render( "viewJournals", {userna} );
 } );
 
 app.get( "/login", ( req, res ) => {
@@ -103,9 +108,7 @@ app.post('/register', (req, res) => {
     res.render('home');
   });
 
-  // Login endpoint
-// Login endpoint
-// Login endpoint
+  
 app.post('/dologin', (req, res) => {
     const { username, password } = req.body;
   
@@ -117,17 +120,14 @@ app.post('/dologin', (req, res) => {
       }
 
       if (results.length === 1) {
-        const userid = results[0].user_id;
-        const userna = results[0].username; // Access username from the first result
-        res.render('home', { username: userna, user_id: userid });
+        userid = results[0].user_id;
+        userna = results[0].username;
+        res.render('home', {user_id: userid, username: userna});
       } else {
         res.status(401).json({ success: false, error: 'Invalid credentials' });
       }
     });
 });
-  
-
-  
 
 // start the server
 app.listen( port, () => {
