@@ -68,19 +68,21 @@
 </script>
     </div>
 
+    <form id = "journaladd" action = "/addtojournal" method = "post">
     <label for="inputBox"></label>
-    <textarea id="inputBox" rows="5" cols="50"></textarea>
+    <input type = "text" name="inputBox" rows="5" cols="50">
 
-    <button onclick="displayText()">add text to journal</button>
+    <input type = "submit" href = "#" class = "btn orange lighten-4"></a>
 
-    <div id="output"></div>
+    <!-- <div id="output"></div>
 
     <script>
         function displayText() {
             var inputText = document.getElementById("inputBox").value;
             document.getElementById("output").innerHTML = "" + inputText;
         }
-    </script>
+    </script> -->
+    </form>
 
     <nav>
 

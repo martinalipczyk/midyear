@@ -108,6 +108,19 @@ app.post('/register', (req, res) => {
     res.render('home');
   });
 
+  app.post('/addtojournal', (req, res) => {
+    const { inputBox } = req.body;
+    const query = 'INSERT INTO journals (user_id, text) VALUES (?, ?)';
+    db.query(query, [userid, inputBox], (err, results) => {
+        if (err) {
+            console.error('Error adding journal entry: ' + err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.status(200).json({ message: 'User has new journal' });
+    });
+});
+
+
   
 app.post('/dologin', (req, res) => {
     const { username, password } = req.body;
@@ -124,7 +137,7 @@ app.post('/dologin', (req, res) => {
         userna = results[0].username;
         res.render('home', {user_id: userid, username: userna});
       } else {
-        res.status(401).json({ success: false, error: 'Invalid credentials' });
+        res.render("login");
       }
     });
 });
