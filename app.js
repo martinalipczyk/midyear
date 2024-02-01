@@ -6,7 +6,6 @@ const logger = require("morgan");
 const bodyParser = require('body-parser');
 const db = require('./db/db_connection.js'); // Adjust the path accordingly
 
-
 // Use body-parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -98,29 +97,33 @@ app.post('/register', (req, res) => {
       
     });
    
-    res.redirect('/home');
+    res.render('home');
   });
 
   // Login endpoint
 // Login endpoint
+// Login endpoint
 app.post('/dologin', (req, res) => {
     const { username, password } = req.body;
   
-    const query = 'SELECT user_id FROM user WHERE username = ? AND password = ?';
+    const query = 'SELECT user_id, username FROM user WHERE username = ? AND password = ?';
     db.query(query, [username, password], (err, results) => {
       if (err) {
         console.error('Error executing query: ' + err.message);
         return res.status(500).json({ error: 'Internal Server Error' });
       }
-  ß
+
       if (results.length === 1) {
-        const userId = results[0].user_id;
-        res.json({ success: true, message: 'Login successful', userId: userId });
+        const userid = results[0].user_id;
+        const userna = results[0].username; // Access username from the first result
+        res.render('home', { username: userna, user_id: userid });
       } else {
         res.status(401).json({ success: false, error: 'Invalid credentials' });
       }
     });
 });
+
+  
 
   
 
