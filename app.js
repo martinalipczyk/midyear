@@ -36,9 +36,6 @@ app.get( "/createaccount", ( req, res ) => {
     res.sendFile( __dirname + "/views/createaccount.html" );
 } );
 
-app.get( "/goalsetting", ( req, res ) => {
-    res.sendFile( __dirname + "/views/goalsetting.html" );
-} );
 
 app.get( "/todo", ( req, res ) => {
     res.sendFile( __dirname + "/views/todo.html" );
@@ -87,7 +84,6 @@ app.use(express.static(__dirname + '/public'));
 app.post('/register', (req, res) => {
     const { first_name, last_name, username, password, email } = req.body;
   
-    // You may want to add validation and hashing for the password
   
     const query = 'INSERT INTO user (first_name, last_name, username, password, email) VALUES (?, ?, ?, ?, ?)';
     db.query(query, [first_name, last_name, username, password, email], (err, results) => {
@@ -96,7 +92,9 @@ app.post('/register', (req, res) => {
         return res.status(500).json({ error: 'Internal Server Error' });
       }
       res.status(200).json({ message: 'User registered successfully' });
+      
     });
+    res.redirect('/home');
   });
   
   
