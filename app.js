@@ -143,15 +143,63 @@ app.post('/dologin', (req, res) => {
 
 
 app.post('/saveTask', (req, res) => {
-    const { user_id, task_name } = req.body;
+    const { userid, task_name } = req.body;
 
-    const query = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
-    db.query(query, [user_id, task_name], (err, results) => {
-        if (err) {
-            console.error('Error saving task: ' + err.message);
+    console.log('Received request to save task:', { userid, task_name });
+
+
+    // Check if the user exists before inserting the task
+    const checkUserQuery = 'SELECT COUNT(*) AS userCount FROM user WHERE user_id = ?';
+    db.query(checkUserQuery, [userid], (checkUserErr, checkUserResults) => {
+        if (checkUserErr) {
+            console.error('Error checking user existence: ' + checkUserErr.message);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
-        res.status(200).json({ message: 'Task saved successfully' });
+
+        const userExists = checkUserResults[0].userCount > 0;
+
+        if (!userExists) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // If the user exists, proceed to insert the task into the tasks table
+        const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
+        db.query(insertTaskQuery, [userid, task_name], (insertErr, insertResults) => {
+            if (insertErr) {
+                console.error('Error saving task: ' + insertErr.message);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            res.status(200).json({ message: 'Task saved successfully' });
+        });
+    });
+});
+
+app.post('/deleteTask', (req, res) => {
+    const { user_id, task_name } = req.body;
+
+    // Check if the user exists before deleting the task
+    const checkUserQuery = 'SELECT COUNT(*) AS userCount FROM user WHERE user_id = ?';
+    db.query(checkUserQuery, [user_id], (checkUserErr, checkUserResults) => {
+        if (checkUserErr) {
+            console.error('Error checking user existence: ' + checkUserErr.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+
+        const userExists = checkUserResults[0].userCount > 0;
+
+        if (!userExists) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // If the user exists, proceed to delete the task from the tasks table
+        const deleteTaskQuery = 'DELETE FROM tasks WHERE user_id = ? AND task_name = ?';
+        db.query(deleteTaskQuery, [user_id, task_name], (deleteErr, deleteResults) => {
+            if (deleteErr) {
+                console.error('Error deleting task: ' + deleteErr.message);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            res.status(200).json({ message: 'Task deleted successfully' });
+        });
     });
 });
 
