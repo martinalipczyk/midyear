@@ -124,10 +124,11 @@ app.post('/register', (req, res) => {
   });
 
   // Login endpoint
+// Login endpoint
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
   
-    const query = 'SELECT * FROM user WHERE username = ? AND password = ?';
+    const query = 'SELECT user_id FROM user WHERE username = ? AND password = ?';
     db.query(query, [username, password], (err, results) => {
       if (err) {
         console.error('Error executing query: ' + err.message);
@@ -135,13 +136,14 @@ app.post('/login', (req, res) => {
       }
   
       if (results.length === 1) {
-        res.json({ message: 'Login successful' });
+        const userId = results[0].user_id;
+        res.json({ success: true, message: 'Login successful', userId: userId });
       } else {
-        res.status(401).json({ error: 'Invalid credentials' });
+        res.status(401).json({ success: false, error: 'Invalid credentials' });
       }
     });
-  });
-  
+});
+
   
 
 // start the server

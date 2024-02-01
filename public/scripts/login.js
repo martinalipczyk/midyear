@@ -1,34 +1,26 @@
-document.addEventListener('DOMContentLoaded', function() {
-    M.AutoInit();
-  
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-  
-      const formData = new FormData(event.target);
-      const username = formData.get('username');
-      const password = formData.get('password');
-  
-      // Perform login validation by sending a request to the server
-      fetch('/login', {
+// Example in login.js
+document.getElementById('loginForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch('/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Login response:', data);
+        if (data.success) {
+            alert('Login successful');
+            // Use the userId in subsequent requests or redirect to another page
+            fetchData(data.userId);
+        } else {
+            alert('Login failed: ' + data.error);
         }
-        return response.json();
-      })
-      .then(data => {
-        alert("wrong"); // Replace this with redirect or further actions
-      })
-      .catch(error => {
+    })
+    .catch(error => {
         console.error('Error during login:', error);
-        alert('Invalid credentials. Please try again.');
-      });
+        alert('An error occurred during login');
     });
-  });
-  
+});
