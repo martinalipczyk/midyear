@@ -97,34 +97,13 @@ app.post('/register', (req, res) => {
       res.status(200).json({ message: 'User registered successfully' });
       
     });
-    // app.get('/fetch-data', (req, res) => {
-        
-    //     const query = 'SELECT user_id';
-      
-    //     db.query(query, [userId], (err, results) => {
-    //       if (err) {
-    //         console.error('Error fetching data from the database: ' + err.message);
-    //         return res.status(500).json({ error: 'Internal Server Error' });
-    //       }
-      
-    //       if (results.length === 0) {
-    //         return res.status(404).json({ error: 'User not found' });
-    //       }
-      
-    //       // Set the fetched data as variables
-    //       const username = results[0].username;
-    //       const email = results[0].email;
-      
-    //       // Use the variables as needed
-    //       res.json({ username, email });
-    //     });
-    //   });
+   
     res.redirect('/home');
   });
 
   // Login endpoint
 // Login endpoint
-app.post('/login', (req, res) => {
+app.post('/dologin', (req, res) => {
     const { username, password } = req.body;
   
     const query = 'SELECT user_id FROM user WHERE username = ? AND password = ?';
@@ -133,7 +112,7 @@ app.post('/login', (req, res) => {
         console.error('Error executing query: ' + err.message);
         return res.status(500).json({ error: 'Internal Server Error' });
       }
-  
+  ß
       if (results.length === 1) {
         const userId = results[0].user_id;
         res.json({ success: true, message: 'Login successful', userId: userId });
