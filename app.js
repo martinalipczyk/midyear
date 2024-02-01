@@ -20,7 +20,6 @@ app.set( "view engine", "ejs" );
 app.use(logger("dev"));
 
 
-// define a route for the default home page
 // app.get( "/", ( req, res ) => {
 //     res.sendFile( __dirname + "/views/index.html" );
 // } );
@@ -28,12 +27,6 @@ app.use(logger("dev"));
 
 
 app.get( "/", ( req, res ) => {
-    res.sendFile( __dirname + "/views/index.html" );
-} );
-
-
-
-app.get( "/home", ( req, res ) => {
     res.render("home");
 } );
 
