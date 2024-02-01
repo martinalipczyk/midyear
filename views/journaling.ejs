@@ -37,7 +37,7 @@
       <a class = "btn white black-text" id="generateButton">give me a prompt</a>
     </div>
 
-  <!-- Display area for the randomly chosen word -->
+  <!-- display area for the randomly chosen prompt -->
     <p id="displayWord" class = "center-align"></p>
   </container>
 
@@ -72,23 +72,23 @@
   
     <div>
 
-    <form id = "journaladd" action = "/addtojournal" method = "post">
-    <label for="inputBox"></label>
-    <input type = "text" name="inputBox" rows="5" cols="50">
+      <form id = "journaladd" action = "/addtojournal" method = "post">
+      <label for="inputBox"></label>
+      <input type = "text" name="inputBox" rows="5" cols="50">
 
-    <div class = "center-align">
-      <p class = "btn white black-text" onclick="displayText()">add text to journal</p>
-      <input type = submit>
+      <div class = "center-align">
+        <!-- <p class = "btn white black-text" onclick="displayText()">add text to journal</p> -->
+        <input type = submit>
     </div>
 
     <div class = "center-align" id="output"></div>
 
-    <script>
+    <!-- <script>
         function displayText() {
             var inputText = document.getElementById("inputBox").value;
             document.getElementById("output").innerHTML = "" + inputText;
         }
-    </script>
+    </script> -->
     <div class = "center-align">
       <h4>after your done with your journal, try:</h3>
       <p class = "btn white black-text" id = "tracking your mood"  onclick="window.location.href='moodPages/moodtracker.html'">tracking your mood</p>

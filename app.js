@@ -217,10 +217,10 @@ app.get('/getTasks/:user_id', (req, res) => {
 });
 
 app.post('/addtojournal', (req, res) => {
-    const { user_id, inputBox } = req.body;
+    const {inputBox } = req.body;
 
-    const query = 'INSERT INTO journals (inputBox) VALUES (?) WHERE user_id = userid';
-    db.query(query, [user_id, inputBox], (err, results) => {
+    const query = 'INSERT INTO journals (userid, text) VALUES (?, ?)';
+    db.query(query, [userid, inputBox], (err, results) => {
         if (err) {
             console.error('Error adding to journal: ' + err.message);
             return res.status(500).json({ error: 'Internal Server Error' });
