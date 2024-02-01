@@ -77,6 +77,10 @@ app.get( "/journaling/viewJournals", ( req, res ) => {
     res.sendFile( __dirname + "/views/viewJournals.html" );
 } );
 
+app.get( "/login", ( req, res ) => {
+    res.sendFile( __dirname + "/views/login.html" );
+} );
+
 app.use(express.static(__dirname + '/public'));
 
 
@@ -94,7 +98,48 @@ app.post('/register', (req, res) => {
       res.status(200).json({ message: 'User registered successfully' });
       
     });
+    // app.get('/fetch-data', (req, res) => {
+        
+    //     const query = 'SELECT user_id';
+      
+    //     db.query(query, [userId], (err, results) => {
+    //       if (err) {
+    //         console.error('Error fetching data from the database: ' + err.message);
+    //         return res.status(500).json({ error: 'Internal Server Error' });
+    //       }
+      
+    //       if (results.length === 0) {
+    //         return res.status(404).json({ error: 'User not found' });
+    //       }
+      
+    //       // Set the fetched data as variables
+    //       const username = results[0].username;
+    //       const email = results[0].email;
+      
+    //       // Use the variables as needed
+    //       res.json({ username, email });
+    //     });
+    //   });
     res.redirect('/home');
+  });
+
+  // Login endpoint
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+  
+    const query = 'SELECT * FROM user WHERE username = ? AND password = ?';
+    db.query(query, [username, password], (err, results) => {
+      if (err) {
+        console.error('Error executing query: ' + err.message);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+  
+      if (results.length === 1) {
+        res.json({ message: 'Login successful' });
+      } else {
+        res.status(401).json({ error: 'Invalid credentials' });
+      }
+    });
   });
   
   
