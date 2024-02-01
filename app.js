@@ -128,6 +128,34 @@ app.post('/dologin', (req, res) => {
     });
 });
 
+
+app.post('/saveTask', (req, res) => {
+    const { user_id, task_name } = req.body;
+
+    const query = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
+    db.query(query, [user_id, task_name], (err, results) => {
+        if (err) {
+            console.error('Error saving task: ' + err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.status(200).json({ message: 'Task saved successfully' });
+    });
+});
+
+app.get('/getTasks/:user_id', (req, res) => {
+    const user_id = req.params.user_id;
+
+    const query = 'SELECT task_name FROM tasks WHERE user_id = ?';
+    db.query(query, [user_id], (err, results) => {
+        if (err) {
+            console.error('Error fetching tasks: ' + err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.status(200).json(results);
+    });
+});
+
+
 // start the server
 app.listen( port, () => {
     console.log(`App server listening on ${ port }. (Go to http://localhost:${ port })` );
