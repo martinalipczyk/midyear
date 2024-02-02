@@ -4,8 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .active {
+            background-color:  rgb(4, 124, 164);
+            color: white;
+        }
+
+        button:active, button.active {
+            background-color:  rgb(4, 124, 164);
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
+    <div class = "home">
+        <button id = "home" onclick = "window.location.href='/home'">home</button>
+    </div>
+    <div class =  "intro">
+        <h1>If you're feeling happy...</h1>
+        <p>Take some time to enjoy this moment!</p>
+        <p>1. Add a picture of something that made you smile today!</p>
+
+        <div class="first">
+            <form id = "get images" method = "POST" action = "/uploadPictures" enctype="multipart/form-data">
+              <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"></p>
+              <img id="output" width="200">
+              <p><img id="output" width="200" /></p>
+            </div>
+            
+            
+            <script type="text/javascript">
+              var loadFile = function(event) {
+                var image = document.getElementById('output');
+                image.src = URL.createObjectURL(event.target.files[0]);
+              };
+            </script>
+          
+        
+    </script>
+</div>
+
+
+    <p> 2. Add a <b>grattitude journal</b> to your log!</p>
+    <p class = "btn white black-text" id = "journal"  onclick="window.location.href='journaling'">go to journal!</p>
+
     
+    
+    
+ </div>
+</body>
+</html>
+
+
+</body>
+</html>
+
 </body>
 </html>
