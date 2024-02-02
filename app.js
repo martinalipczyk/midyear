@@ -69,7 +69,7 @@ app.get( "/todo", ( req, res ) => {
 } );
 
 app.get( "/moodtracker", ( req, res ) => {
-    res.render( "moodtracker" );
+    res.render( "moodtracker", {user_id: userid, username: userna});
 } );
 
 app.get( "/journaling", ( req, res ) => {
@@ -81,23 +81,23 @@ app.get( "/journaling", ( req, res ) => {
 // } );
 
 app.get( "/moodtracker/bored", ( req, res ) => {
-    res.render("bored");
+    res.render("bored", {user_id: userid, username: userna});
 } );
 
 app.get( "/moodtracker/happy", ( req, res ) => {
-    res.render( "happy" );
+    res.render( "happy", {user_id: userid, username: userna} );
 } );
 
 app.get( "/moodtracker/stressed", ( req, res ) => {
-    res.render( "stressed" );
+    res.render( "stressed", {user_id: userid, username: userna} );
 } );
 
 app.get( "/moodtracker/tired", ( req, res ) => {
-    res.render( "tired" );
+    res.render( "tired", {user_id: userid, username: userna});
 } );
 
 app.get( "/moodtracker/upset", ( req, res ) => {
-    res.render( "upset" );
+    res.render( "upset", {user_id: userid, username: userna} );
 } );
 
 app.get("/journaling/viewJournals", (req, res) => {
