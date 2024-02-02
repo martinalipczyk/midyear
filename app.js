@@ -46,9 +46,7 @@ const upload = multer({ storage: storage });
 app.use(logger("dev"));
 
 
-// app.get( "/", ( req, res ) => {
-//     res.sendFile( __dirname + "/views/index.html" );
-// } );
+
 
 app.get( "/", ( req, res ) => {
     res.render("login");
@@ -56,7 +54,6 @@ app.get( "/", ( req, res ) => {
 
 app.get( "/home", ( req, res ) => {
     res.render('home', {user_id: userid, username: userna});
-    // app.post('/dologin', (req, res));
 } )
 
 app.get( "/createaccount", ( req, res ) => {
@@ -76,9 +73,7 @@ app.get( "/journaling", ( req, res ) => {
     res.render( "journaling", {user_id: userid, username: userna} );
 } );
 
-// app.get( "/pictureupload", ( req, res ) => {
-//     res.render( "pictureupload" );
-// } );
+
 
 app.get( "/moodtracker/bored", ( req, res ) => {
     res.render("bored", {user_id: userid, username: userna});
@@ -111,16 +106,6 @@ app.get("/journaling/viewJournals", (req, res) => {
     });
 });
 
-// app.get("/pictureupload/viewpictures", (req, res) => {
-//     db.query('SELECT picture FROM view_images WHERE userid = ?', [userid], (err, results) => {
-//         if (err) {
-//             console.error('Error executing query: ' + err.message);
-//             return res.status(500).json({ error: 'Internal Server Error' });
-//         }
-
-//         res.render("viewpictures", { user_id: userid, username: userna, pictures: results });
-//     });
-// });
 
 app.get( "/login", ( req, res ) => {
     res.render( "login" );
@@ -137,8 +122,6 @@ app.post('/register', (req, res) => {
             console.error('Error registering user: ' + err.message);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
-
-        // Assuming you are trying to log in the user after registration
         db.query('SELECT user_id, username FROM user WHERE username = ? AND password = ?', [username, password], (err, results) => {
             if (err) {
                 console.error('Error executing login query: ' + err.message);
@@ -181,22 +164,18 @@ app.post('/dologin', (req, res) => {
 
 
 app.post('/deleteTask', (req, res) => {
-    const { taskName } = req.body; // Assuming you have user information in the session
+    const { taskName } = req.body; 
 
     if (!userid) {
         return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    // Add code to delete the task with the given name and user_id from the database
-    // Example: (this depends on your database schema and query mechanism)
     const deleteTaskQuery = 'DELETE FROM tasks WHERE task_name = ? AND user_id = ?';
     db.query(deleteTaskQuery, [taskName, userid], (deleteErr, deleteResults) => {
         if (deleteErr) {
             console.error('Error deleting task: ' + deleteErr.message);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
-
-        // Check if any rows were affected, indicating success
         if (deleteResults.affectedRows > 0) {
             res.json({ message: 'Task deleted successfully' });
         } else {
@@ -205,18 +184,7 @@ app.post('/deleteTask', (req, res) => {
     });
 });
 
-// app.get('/getTasks/:user_id', (req, res) => {
-//     const user_id = req.params.user_id;
 
-//     const query = 'SELECT task_name FROM tasks WHERE user_id = ?';
-//     db.query(query, [user_id], (err, results) => {
-//         if (err) {
-//             console.error('Error fetching tasks: ' + err.message);
-//             return res.status(500).json({ error: 'Internal Server Error' });
-//         }
-//         res.status(200).json(results);
-//     });
-// });
 
 
 app.post('/addTask', (req, res) => {
@@ -273,30 +241,7 @@ app.post('/addtojournal', (req, res) => {
     });
 });
 
-// app.post('/uploadPictures', upload.single('image'), (req, res) => {
-//     try {
-//         const { buffer, originalname } = req.file;
 
-//         if (!buffer || !originalname) {
-//             console.error('No file uploaded');
-//             return res.status(400).json({ error: 'No file uploaded' });
-//         }
-//         const { textinput } = req.body;
-
-//         const query = 'INSERT INTO view_images (userid, picture, caption) VALUES (?, ?, ?)';
-//         db.query(query, [userid, buffer, textinput], (err, results) => {
-//             if (err) {
-//                 console.error('Error adding to picturebook: ' + err.message);
-//                 return res.status(500).json({ error: 'Internal Server Error' });
-//             }
-
-//             res.redirect('/pictureupload/viewpictures'); 
-//         });
-//     } catch (error) {
-//         console.error('Error handling picture upload:', error);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// });
 
 
 
