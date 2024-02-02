@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Your Journals</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="/styling.css"> -->
+</head>
+<body>
+    <h1>View Your Pictures</h1>
+
+    <% if (pictures && pictures.length > 0) { %>
+        <ul>
+            <% for (let i = 0; i < pictures.length; i++) { %>
+                <li><%= pictures[i].image %></li>
+            <% } %>
+        </ul>
+    <% } else { %>
+        <p>No journals available.</p>
+    <% } %>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
