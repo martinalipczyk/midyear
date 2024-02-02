@@ -39,8 +39,8 @@
         <% if (journals && journals.length > 0) { %>
             <ul>
                 <% for (let i = 0; i < journals.length; i++) { %>
-                    <li class = "center-align"><%= journals[i].text %></li>
-                    <hr>
+                    <li class = "center-align">- <%= journals[i].text %></li>
+                    <p></p>
                 <% } %>
             </ul>
         <% } else { %>
