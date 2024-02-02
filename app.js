@@ -6,6 +6,10 @@ const logger = require("morgan");
 const bodyParser = require('body-parser');
 const db = require('./db/db_connection.js'); // Adjust the path accordingly
 const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+
+
 let userna = null;
 let userid = null;
 
@@ -21,10 +25,17 @@ app.set( "view engine", "ejs" );
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/uploads'); // Set the destination folder for uploaded files
+        const uploadPath = 'public/uploads';
+
+        fs.mkdir(uploadPath, { recursive: true }, (err) => {
+            if (err) {
+                console.error('Error creating destination directory:', err);
+            }
+            cb(null, uploadPath);
+        });
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)); // Set the filename
+        cb(null, Date.now() + path.extname(file.originalname));
     }
 });
 
