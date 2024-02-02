@@ -27,8 +27,9 @@
     </ul>
   </nav>
     <div class="first">
-      <form id = "get images" method = "POST" action = "/uploadPictures">
+      <form id = "get images" method = "POST" action = "/uploadPictures" enctype="multipart/form-data">
         <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"></p>
+        <img id="output" width="200">
         <p><img id="output" width="200" /></p>
       </div>
       

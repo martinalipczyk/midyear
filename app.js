@@ -5,6 +5,7 @@ const port = 3000;
 const logger = require("morgan");
 const bodyParser = require('body-parser');
 const db = require('./db/db_connection.js'); // Adjust the path accordingly
+const multer = require('multer');
 let userna = null;
 let userid = null;
 
@@ -17,6 +18,17 @@ app.use(bodyParser.json());
 // Configure Express to use EJS
 app.set( "views",  __dirname + "/views");
 app.set( "view engine", "ejs" );
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads'); // Set the destination folder for uploaded files
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)); // Set the filename
+    }
+});
+
+const upload = multer({ storage: storage });
 
 
 // define middleware that logs all incoming requests
@@ -43,7 +55,6 @@ app.get( "/createaccount", ( req, res ) => {
 
 app.get( "/todo", ( req, res ) => {
     res.render('todo', {user_id: userid, username: userna});
-
 } );
 
 app.get( "/moodtracker", ( req, res ) => {
@@ -205,19 +216,19 @@ app.post('/dologin', (req, res) => {
 // });
 
 
-app.post('/saveTask', (req, res) => {
-    const { task_name } = req.body;
+// app.post('/saveTask', (req, res) => {
+//     const { task_name } = req.body;
 
-        // If the user exists, proceed to insert the task into the tasks table
-        const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
-        db.query(insertTaskQuery, [userid, task_name], (insertErr, insertResults) => {
-            if (insertErr) {
-                console.error('Error saving task: ' + insertErr.message);
-                return res.status(500).json({ error: 'Internal Server Error' });
-            }
-            res.status(200).json({ message: 'Task saved successfully' });
-        });
-    });
+//         // If the user exists, proceed to insert the task into the tasks table
+//         const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
+//         db.query(insertTaskQuery, [userid, task_name], (insertErr, insertResults) => {
+//             if (insertErr) {
+//                 console.error('Error saving task: ' + insertErr.message);
+//                 return res.status(500).json({ error: 'Internal Server Error' });
+//             }
+//             res.status(200).json({ message: 'Task saved successfully' });
+//         });
+//     });
 
 
 app.post('/addtojournal', (req, res) => {
@@ -233,17 +244,28 @@ app.post('/addtojournal', (req, res) => {
     });
 });
 
-app.post('/uploadPictures', (req, res) => {
-    const {image, textinput } = req.body;
+app.post('/uploadPictures', upload.single('image'), (req, res) => {
+    try {
+        // Access the uploaded file information using req.file
+        const { filename } = req.file;
 
-    const query = 'INSERT INTO view_images (userid, picture, caption) VALUES (?, ?, ?)';
-    db.query(query, [userid, image, textinput], (err, results) => {
-        if (err) {
-            console.error('Error adding to picturebook: ' + err.message);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
-        res.render('pictureupload');
-    });
+        // Access other form data using req.body
+        const { image, textinput } = req.body;
+
+        // Save the file information and other data to the database
+        const query = 'INSERT INTO view_images (userid, picture, caption) VALUES (?, ?, ?)';
+        db.query(query, [userid, filename, textinput], (err, results) => {
+            if (err) {
+                console.error('Error adding to picturebook: ' + err.message);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+
+            res.render('pictureupload');
+        });
+    } catch (error) {
+        console.error('Error handling picture upload:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 
