@@ -269,7 +269,7 @@ app.post('/addtojournal', (req, res) => {
             console.error('Error adding to journal: ' + err.message);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
-        res.render('journaling');
+        res.render( "journaling", {user_id: userid, username: userna} );
     });
 });
 
