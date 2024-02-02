@@ -265,7 +265,7 @@ function displayTasks(tasks) {
 
 
 function deleteFromDatabase(taskName) {
-
+    // Make an AJAX request to your server to delete the task from the database
     fetch('/deleteTask', {
         method: 'POST',
         headers: {
@@ -273,7 +273,10 @@ function deleteFromDatabase(taskName) {
         },
         body: JSON.stringify({ taskName: taskName }),
     })
-        .then(response => response.json())
-        .then(data => console.log('Task deleted from the database:', data))
-        .catch(error => console.error('Error deleting task from the database:', error));
+    .then(response => {
+        console.log(response); // Log the full response for debugging
+        return response.json();
+    })
+    .then(data => console.log('Task deleted from the database:', data))
+    .catch(error => console.error('Error deleting task from the database:', error));
 }

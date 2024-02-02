@@ -17,7 +17,7 @@ let userid = null;
 // Use body-parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+// app.use(express.json());
 
 // Configure Express to use EJS
 app.set( "views",  __dirname + "/views");
@@ -181,7 +181,7 @@ app.post('/dologin', (req, res) => {
 
 
 app.post('/deleteTask', (req, res) => {
-    const { taskName } = req.body; 
+    const { taskName } = req.body; // Assuming you have user information in the session
 
     if (!userid) {
         return res.status(401).json({ error: 'Unauthorized' });
