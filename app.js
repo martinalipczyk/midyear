@@ -26,8 +26,6 @@ app.use(logger("dev"));
 //     res.sendFile( __dirname + "/views/index.html" );
 // } );
 
-
-
 app.get( "/", ( req, res ) => {
     res.render("login");
 } )
@@ -150,79 +148,79 @@ app.post('/dologin', (req, res) => {
 });
 
 
-app.post('/saveTask', (req, res) => {
-    const { userid, task_name } = req.body;
+// app.post('/saveTask', (req, res) => {
+//     const { userid, task_name } = req.body;
 
-    console.log('Received request to save task:', { userid, task_name });
+//     console.log('Received request to save task:', { userid, task_name });
 
 
-    // Check if the user exists before inserting the task
-    const checkUserQuery = 'SELECT COUNT(*) AS userCount FROM user WHERE user_id = ?';
-    db.query(checkUserQuery, [userid], (checkUserErr, checkUserResults) => {
-        if (checkUserErr) {
-            console.error('Error checking user existence: ' + checkUserErr.message);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
+//     // Check if the user exists before inserting the task
+//     const checkUserQuery = 'SELECT COUNT(*) AS userCount FROM user WHERE user_id = ?';
+//     db.query(checkUserQuery, [userid], (checkUserErr, checkUserResults) => {
+//         if (checkUserErr) {
+//             console.error('Error checking user existence: ' + checkUserErr.message);
+//             return res.status(500).json({ error: 'Internal Server Error' });
+//         }
 
-        const userExists = checkUserResults[0].userCount > 0;
+//         const userExists = checkUserResults[0].userCount > 0;
 
-        if (!userExists) {
-            return res.status(404).json({ error: 'User not found' });
-        }
+//         if (!userExists) {
+//             return res.status(404).json({ error: 'User not found' });
+//         }
 
-        // If the user exists, proceed to insert the task into the tasks table
-        const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
-        db.query(insertTaskQuery, [userid, task_name], (insertErr, insertResults) => {
-            if (insertErr) {
-                console.error('Error saving task: ' + insertErr.message);
-                return res.status(500).json({ error: 'Internal Server Error' });
-            }
-            res.status(200).json({ message: 'Task saved successfully' });
-        });
-    });
-});
+//         // If the user exists, proceed to insert the task into the tasks table
+//         const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
+//         db.query(insertTaskQuery, [userid, task_name], (insertErr, insertResults) => {
+//             if (insertErr) {
+//                 console.error('Error saving task: ' + insertErr.message);
+//                 return res.status(500).json({ error: 'Internal Server Error' });
+//             }
+//             res.status(200).json({ message: 'Task saved successfully' });
+//         });
+//     });
+// });
 
-app.post('/deleteTask', (req, res) => {
-    const { user_id, task_name } = req.body;
+// app.post('/deleteTask', (req, res) => {
+//     const { user_id, task_name } = req.body;
 
-    // Check if the user exists before deleting the task
-    const checkUserQuery = 'SELECT COUNT(*) AS userCount FROM user WHERE user_id = ?';
-    db.query(checkUserQuery, [user_id], (checkUserErr, checkUserResults) => {
-        if (checkUserErr) {
-            console.error('Error checking user existence: ' + checkUserErr.message);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
+//     // Check if the user exists before deleting the task
+//     const checkUserQuery = 'SELECT COUNT(*) AS userCount FROM user WHERE user_id = ?';
+//     db.query(checkUserQuery, [user_id], (checkUserErr, checkUserResults) => {
+//         if (checkUserErr) {
+//             console.error('Error checking user existence: ' + checkUserErr.message);
+//             return res.status(500).json({ error: 'Internal Server Error' });
+//         }
 
-        const userExists = checkUserResults[0].userCount > 0;
+//         const userExists = checkUserResults[0].userCount > 0;
 
-        if (!userExists) {
-            return res.status(404).json({ error: 'User not found' });
-        }
+//         if (!userExists) {
+//             return res.status(404).json({ error: 'User not found' });
+//         }
 
-        // If the user exists, proceed to delete the task from the tasks table
-        const deleteTaskQuery = 'DELETE FROM tasks WHERE user_id = ? AND task_name = ?';
-        db.query(deleteTaskQuery, [user_id, task_name], (deleteErr, deleteResults) => {
-            if (deleteErr) {
-                console.error('Error deleting task: ' + deleteErr.message);
-                return res.status(500).json({ error: 'Internal Server Error' });
-            }
-            res.status(200).json({ message: 'Task deleted successfully' });
-        });
-    });
-});
+//         // If the user exists, proceed to delete the task from the tasks table
+//         const deleteTaskQuery = 'DELETE FROM tasks WHERE user_id = ? AND task_name = ?';
+//         db.query(deleteTaskQuery, [user_id, task_name], (deleteErr, deleteResults) => {
+//             if (deleteErr) {
+//                 console.error('Error deleting task: ' + deleteErr.message);
+//                 return res.status(500).json({ error: 'Internal Server Error' });
+//             }
+//             res.status(200).json({ message: 'Task deleted successfully' });
+//         });
+//     });
+// });
 
-app.get('/getTasks/:user_id', (req, res) => {
-    const user_id = req.params.user_id;
+// app.get('/getTasks/:user_id', (req, res) => {
+//     const user_id = req.params.user_id;
 
-    const query = 'SELECT task_name FROM tasks WHERE user_id = ?';
-    db.query(query, [user_id], (err, results) => {
-        if (err) {
-            console.error('Error fetching tasks: ' + err.message);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
-        res.status(200).json(results);
-    });
-});
+//     const query = 'SELECT task_name FROM tasks WHERE user_id = ?';
+//     db.query(query, [user_id], (err, results) => {
+//         if (err) {
+//             console.error('Error fetching tasks: ' + err.message);
+//             return res.status(500).json({ error: 'Internal Server Error' });
+//         }
+//         res.status(200).json(results);
+//     });
+// });
 
 app.post('/addtojournal', (req, res) => {
     const {inputBox } = req.body;
@@ -234,6 +232,19 @@ app.post('/addtojournal', (req, res) => {
             return res.status(500).json({ error: 'Internal Server Error' });
         }
         res.render('journaling');
+    });
+});
+
+app.post('/uploadPictures', (req, res) => {
+    const {image, textinput } = req.body;
+
+    const query = 'INSERT INTO view_images (userid, picture, caption) VALUES (?, ?, ?)';
+    db.query(query, [userid, image, textinput], (err, results) => {
+        if (err) {
+            console.error('Error adding to picturebook: ' + err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.render('/uploadPictures');
     });
 });
 
