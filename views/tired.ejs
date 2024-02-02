@@ -7,35 +7,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        .active {
-            background-color:  rgb(4, 124, 164);
+        body {
+            background-color: lightblue;
+        }
+        .nav-color {
+            background-color: rgb(170, 218, 233);
+            color: black;
+        }
+        .button-color {
+            background-color: rgb(199, 228, 237);
+            color: black;
+        }
+        .custom-margin {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .button-color:hover {
+            background-color:  rgb(122, 185, 206);
             color: white;
         }
 
-        button:active, button.active {
-            background-color:  rgb(4, 124, 164);
-            color: white;
+        .custom-btm {
+            margin-bottom: 20px;
         }
-
     </style>
 </head>
 <body>
-    <div class = "home">
-        <button id = "home" onclick = "window.location.href='/home'">home</button>
-    </div>
-    <div class =  "intro">
+    <nav class = "nav-color center-align">
+        <!-- //userinfo = sendInfo;
+        userid = sendIfo[0];
+        username = sendInfo[1] -->
+        <ul>
+            <row class = "nav-color">
+          <li><a class = "nav-color" href ="/home">moodwise</a></li>
+          <li><a class = "nav-color" href ="/journaling">journaling</a></li>
+          <li><a class = "nav-color black-text col" href = "/journaling/viewJournals">view journals</a></li>
+          <li><a class = "nav-color" href ="/moodtracker">mood tracker</a></li>
+          <!-- <li><a class = "nav-color " href = "/pictureupload">upload your picture!!</a></li> -->
+          <li><a class = "nav-color" href = "/todo">to-do</a></li>
+          </row>
+        </ul>
+    </nav>   
+    <div class =  "custom-margin">
         <h1>If you're feeling tired...</h1>
-        <p>It's OK, you'll get through this!</p>
-        <p>If you need to get some rest, here's a sleep meditation playlist:</p>
+        <h6>It's OK, you'll get through this!</h6>
+        <h6 class = "custom-btm">If you need to get some rest, here's a sleep meditation playlist:</h6>
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6X7wz4cCUBR6p68mzM7mZ4?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 
-    <p>If you need to stay awake right now, that's OK too! Here's some ways to try and get your energy up:</p>
+    <h6>If you need to stay awake right now, that's OK too! Here's some ways to try and get your energy up:</h6>
 
-    <p>        1. Listen to some upbeat, energizing music:</p> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIeU3RFfPV9ui?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    <p>        2. Energize yourself with active movement:</p>
+    <h6 class = "custom-btm">        1. Listen to some upbeat, energizing music:</h6> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIeU3RFfPV9ui?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <h6 class = "custom-btm">        2. Energize yourself with active movement:</h6>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/iWUaZfR-gWU?si=K6yLIkXJ-z4z3a3O" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <p>        3. Speak to a friend or family member!</p>
+    <h6 class = "custom-btm">        3. Speak to a friend or family member!</h6>
 
     
     

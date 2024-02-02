@@ -7,23 +7,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        .active {
-            background-color:  rgb(4, 124, 164);
+        body {
+            background-color: lightblue;
+        }
+        .nav-color {
+            background-color: rgb(170, 218, 233);
+            color: black;
+        }
+        .button-color {
+            background-color: rgb(199, 228, 237);
+            color: black;
+        }
+        .custom-margin {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .button-color:hover {
+            background-color:  rgb(122, 185, 206);
             color: white;
         }
 
-        button:active, button.active {
-            background-color:  rgb(4, 124, 164);
-            color: white;
+        .custom-btm {
+            margin-bottom: 20px;
         }
 
     </style>
 </head>
 <body>
-    <div class = "home">
-        <button id = "home" onclick = "window.location.href='/home'">home</button>
-    </div>
-    <div class =  "intro">
+    <nav class = "nav-color center-align">
+        <!-- //userinfo = sendInfo;
+        userid = sendIfo[0];
+        username = sendInfo[1] -->
+        <ul>
+            <row class = "nav-color">
+          <li><a class = "nav-color" href ="/home">moodwise</a></li>
+          <li><a class = "nav-color" href ="/journaling">journaling</a></li>
+          <li><a class = "nav-color black-text col" href = "/journaling/viewJournals">view journals</a></li>
+          <li><a class = "nav-color" href ="/moodtracker">mood tracker</a></li>
+          <!-- <li><a class = "nav-color " href = "/pictureupload">upload your picture!!</a></li> -->
+          <li><a class = "nav-color" href = "/todo">to-do</a></li>
+          </row>
+        </ul>
+    </nav> 
+    <div class =  "custom-margin">
         <h1>If you're feeling happy...</h1>
         <p>Take some time to enjoy this moment!</p>
         <p>1. Add a picture of something that made you smile today!</p>
@@ -44,17 +71,13 @@
             </script>
           
         
-    </script>
-</div>
+    </div>
 
+    <div class = "custom-margin">
+        <p> 2. Add a <b>grattitude journal</b> to your log!</p>
+        <p class = "btn button-color black-text" id = "journal"  onclick="window.location.href='/journaling'">go to journal!</p>
+    </div>
 
-    <p> 2. Add a <b>grattitude journal</b> to your log!</p>
-    <p class = "btn white black-text" id = "journal"  onclick="window.location.href='/journaling'">go to journal!</p>
-
-    
-    
-    
- </div>
 </body>
 </html>
 
