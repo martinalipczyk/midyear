@@ -3,32 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Your Journals</title>
+    <title>view Your journals</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link rel="stylesheet" href="/styling.css"> -->
     <style>
         body{
-            background-image: url('/public/linedpaper.jpeg')
+            background-image: url('/public/linedpaper.jpeg');
+            background-color: lightblue; /* Set your desired background color */
         }
-        
+        .nav-color {
+            background-color: rgb(170, 218, 233);
+            color: black;
+        }
+        .input-color {
+        background-color: rgb(197, 225, 232) !important;
+        }
+        .button-color {
+        background-color: rgb(199, 228, 237);
+        color: black;
+        }
+        .custom-margin {
+        margin-left: 20px;
+        }
+
+        .button-color:hover {
+        background-color:  rgb(122, 185, 206);
+        color: white;
+        }
     </style>
 </head>
 <body>
-    <nav class = "white center-align">
+    <nav class = "nav-color center-align">
       <ul>
           <row>
         <li><a class = "black-text col" href ="/home">moodwise</a></li>
         <li><a class = "black-text col" href ="/journaling">journaling</a></li>
+        <li><a class = "black-text col" href = "/journaling/viewJournals">view journals</a></li>
         <li><a class = "black-text col" href ="/moodtracker">mood tracker</a></li>
-        <li><a class = "black-text col " href = "/pictureupload">upload your picture!!</a></li>
+        <!-- <li><a class = "black-text col " href = "/pictureupload">upload your picture!!</a></li> -->
         <li><a class = "black-text col" href = "/todo">to-do</a></li>
         </row>
       </ul>
 
     </nav>
-    <h1 class = "center-align">View Your Journals</h1>
+    <h1 class = "center-align">view your journals</h1>
     <div class="container">
         <% if (journals && journals.length > 0) { %>
             <ul>
