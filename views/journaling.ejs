@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>journaling</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="/styling.css"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>journaling</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="/styling.css"> -->
+  <style>
+    body {
+      background-color: lightblue; /* Set your desired background color */
+    }
+    .nav-color {
+        background-color: rgb(170, 218, 233);
+        color: black;
+      }
+    .input-color {
+      background-color: rgb(197, 225, 232) !important;
+    }
+    .button-color {
+      background-color: rgb(199, 228, 237);
+      color: black;
+    }
+    .custom-margin {
+      margin-left: 20px;
+    }
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+    .button-color:hover {
+      background-color:  rgb(122, 185, 206);
+      color: white;
+    }
+    
+  </style>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
   <container>
-    <nav class = "white center-align">
+    <nav class = "nav-color center-align">
       <ul>
           <row>
         <li><a class = "black-text col" href ="/home">moodwise</a></li>
         <li><a class = "black-text col" href ="/journaling">journaling</a></li>
         <li><a class = "black-text col" href ="/moodtracker">mood tracker</a></li>
-        <li><a class = "black-text col " href = "/pictureupload">upload your picture!!</a></li>
+        <!-- <li><a class = "black-text col " href = "/pictureupload">upload your picture!!</a></li> -->
         <li><a class = "black-text col" href = "/todo">to-do</a></li>
         </row>
       </ul>
@@ -34,7 +57,7 @@
     <div class = "center-align">
       <h3>what's on your mind?</h2>
       <h4>if you need a prompt, click this button below:</h3>
-      <a class = "btn white black-text" id="generateButton">give me a prompt</a>
+      <a class = "btn button-color" id="generateButton">give me a prompt</a>
     </div>
 
   <!-- display area for the randomly chosen prompt -->
@@ -74,11 +97,11 @@
 
       <form id = "journaladd" action = "/addtojournal" method = "post">
       <label for="inputBox"></label>
-      <input type = "text" name="inputBox" rows="5" cols="50">
+      <input type = "text" name="inputBox" class = "input-color" rows="5" cols="50">
 
       <div class = "center-align">
         <!-- <p class = "btn white black-text" onclick="displayText()">add text to journal</p> -->
-        <input type = submit>
+        <input class = "btn button-color" type = submit>
     </div>
 
     <div class = "center-align" id="output"></div>
@@ -89,41 +112,12 @@
             document.getElementById("output").innerHTML = "" + inputText;
         }
     </script> -->
-    <div class="first">
-        <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"></p>
-        <img id="output" width="200">
-        <p><img id="outputCaption" width="200" /></p>
-      </div>
-      
-      
-      <script type="text/javascript">
-        var loadFile = function(event) {
-          var image = document.getElementById('output');
-          image.src = URL.createObjectURL(event.target.files[0]);
-        };
-      </script>
-    
-  
-    <label for="textinput">enter a caption:</label>
-    <input type="text" id="textinput" name="textinput">
-    <input type="submit">
-  
-  <p id="output"></p>
-  
-  <!-- <script>
-    function displayText() {
-      const input = document.getElementById("text-input").value;
-      document.getElementById("output").textContent = input;
-    }
-     </script> -->
     <div class = "center-align">
       <h4>after your done with your journal, try:</h3>
-      <p class = "btn white black-text" id = "viewing your journals"  onclick="window.location.href='/journaling/viewJournals'">view your journals!</p>
+      <p class = "btn button-color" id = "viewing your journals"  onclick="window.location.href='/journaling/viewJournals'">view your journals!</p>
       <br>
-      <p class = "btn white black-text" id = "tracking your mood"  onclick="window.location.href='/moodPages/moodtracker.html'">tracking your mood</p>
-      <p class = "btn white black-text" id = "uploading a daily picture"  onclick="window.location.href='pictureupload'">uploading a daily picture</p>
-
-
+      <p class = "btn button-color" id = "tracking your mood"  onclick="window.location.href='/moodtracker'">tracking your mood</p>
+      <!-- <p class = "btn button-color" id = "uploading a daily picture"  onclick="window.location.href='pictureupload'">uploading a daily picture</p> -->
     </div>
 </body>
 </html>
