@@ -214,7 +214,7 @@ app.get('/getUserTasks', (req, res) => {
         }
     
     
-        const getUserTasksQuery = 'SELECT task_name FROMs tasks WHERE user_id = ?';
+        const getUserTasksQuery = 'SELECT task_name FROM tasks WHERE user_id = ?';
         db.query(getUserTasksQuery, [userid], (err, results) => {
             if (err) {
                 console.error('Error fetching user tasks:', err);
