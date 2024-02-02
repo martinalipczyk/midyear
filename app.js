@@ -122,18 +122,12 @@ app.get("/pictureupload/viewpictures", (req, res) => {
     });
 });
 
-
-
-
-
 app.get( "/login", ( req, res ) => {
     res.render( "login" );
 } );
 
 app.use(express.static(__dirname + '/public'));
 
-
-//im trying this pls plsplspslpslsplp work
 app.post('/register', (req, res) => {
     const { first_name, last_name, username, password, email } = req.body;
 
@@ -244,30 +238,42 @@ app.post('/addTask', (req, res) => {
 });
 
 app.get('/getUserTasks', (req, res) => {
-    // Retrieve the user ID from the session or wherever it is stored
-     // Adjust this based on your authentication mechanism
+    // // Retrieve the user ID from the session or wherever it is stored
+    // // Adjust this based on your authentication mechanism
+  
+    // // If the user is not logged in or there is no user ID, return an error
+    // if (!userid) {
+    //   return res.status(401).json({ error: 'Unauthorized' });
+    // }
+  
+    // // Query to get tasks for the logged-in user
+    // const getUserTasksQuery = 'SELECT task_name FROM tasks WHERE user_id = ?';
+    // db.query(getUserTasksQuery, [userid], (err, results) => {
+    //   if (err) {
+    //     console.error('Error fetching user tasks:', err);
+    //     return res.status(500).json({ error: 'Internal Server Error' });
+    //   }
+  
+    //   // Extract task names from the database results
+    //   const tasks = results.map(result => ({ task_name: result.task_name }));
+  
+    //   console.log(tasks);
+    //   // Return the tasks as JSON
+    //   res.status(200).json({ tasks });
+    // });
 
-    // If the user is not logged in or there is no user ID, return an error
-    if (!userid) {
-        return res.status(401).json({ error: 'Unauthorized' });
-    }
-
-    // Query to get tasks for the logged-in user
-    const getUserTasksQuery = 'SELECT task_name FROM tasks WHERE user_id = ?';
-    db.query(getUserTasksQuery, [userid], (err, results) => {
+        db.query('SELECT task_name FROM tasks WHERE user_id = ?', [userid], (err, results) => {
         if (err) {
-            console.error('Error fetching user tasks:', err);
+            console.error('Error executing query: ' + err.message);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
 
-        // Extract task names from the database results
-        const tasks = results.map(result => result.task_name);
-
-        // Return the tasks as JSON
-        res.status(200).json({ tasks });
+        const tasks = results.map(result => ({ task_name: result.task_name }));
+        
+        res.render("todo", { tasks: tasks });
     });
-});
 
+  });
 
 app.post('/addtojournal', (req, res) => {
     const {inputBox } = req.body;
