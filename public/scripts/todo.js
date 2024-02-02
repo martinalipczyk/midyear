@@ -1,10 +1,12 @@
+function completedTasks() {
+    
+};
 
 document.querySelector('#push').onclick = function(){
     if(document.querySelector('#newtask input').value.length == 0){
         alert("please enter a task :)")
     }
   
-
     else{
       console.log(document.querySelector('#newtask input').value)
         document.querySelector('#tasks').innerHTML += `
