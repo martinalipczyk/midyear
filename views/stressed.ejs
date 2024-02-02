@@ -32,6 +32,11 @@
             margin-bottom: 20px;
         }
 
+        #li_margin {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -41,6 +46,16 @@
         username = sendInfo[1] -->
         <ul>
             <row class = "nav-color">
+
+                <li><img class = "img" id ="navlogo" src = "/images/mwlogo.png" alt = "mwlogo"></li>
+                <style>
+                  #navlogo{
+                    margin-top:10px;
+                    margin-left:5px;
+                    height:50px;
+                    width:50px;
+                  }
+                </style>
           <li><a class = "nav-color" href ="/home">moodwise</a></li>
           <li><a class = "nav-color" href ="/journaling">journaling</a></li>
           <li><a class = "nav-color black-text col" href = "/journaling/viewJournals">view journals</a></li>
@@ -50,6 +65,7 @@
           </row>
         </ul>
     </nav> 
+    <li id = "li_margin"><strong>user</strong> <%= username %></li>
     <div class =  "custom-margin">
             <h1>if you're feeling stressed...</h1>
             <p>take a deep breath, it's all going to be OK :&#41</p>

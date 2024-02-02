@@ -35,12 +35,25 @@
             color: rgba(0, 0, 0, 0.48);
             padding-left: 5px;
         }
+        #li_margin {
+            margin-top: 5px;
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
     <nav class = "nav-color center-align">
         <ul>
             <row>
+                <li><img class = "img" id ="navlogo" src = "/images/mwlogo.png" alt = "mwlogo"></li>
+                <style>
+                  #navlogo{
+                    margin-top:10px;
+                    margin-left:5px;
+                    height:50px;
+                    width:50px;
+                  }
+                </style>
                 <li><a class = "black-text col" href ="/home">moodwise</a></li>
                 <li><a class = "black-text col" href ="/journaling">journaling</a></li>
                 <li><a class = "black-text col" href = "/journaling/viewJournals">view journals</a></li>
@@ -51,7 +64,7 @@
         </ul>
 
       </nav>
-      <li><strong>user</strong> <%= username %></li>
+      <li id = "li_margin"><strong>user</strong> <%= username %></li>
     <div class = "container">
     <div>
         <h1>to-do list</h1>
@@ -60,7 +73,9 @@
 
         <div class = "container">
         <div id = "newtask">
-            <input class = "input-color" type = "text" id = "txt" placeholder="add tasks">
+            <div class = "custom-margin">
+                <input class = "input-color" type = "text" id = "txt" placeholder="add tasks">
+            </div>
             <a class = "btn button-color"id="push">add</a>
          </div>
 

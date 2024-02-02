@@ -7,6 +7,7 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
   <!-- <link rel="stylesheet" href="/styling.css"> -->
   <style>
     body {
@@ -24,7 +25,8 @@
       color: black;
     }
     .custom-margin {
-      margin-left: 20px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     .button-color:hover {
@@ -32,6 +34,10 @@
       color: white;
     }
     
+    #li_margin {
+        margin-left: 20px;
+        margin-top: 5px;
+    }
   </style>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -42,6 +48,15 @@
     <nav class = "nav-color center-align">
       <ul>
           <row>
+            <li><img class = "img" id ="navlogo" src = "/images/mwlogo.png" alt = "mwlogo"></li>
+            <style>
+              #navlogo{
+                margin-top:10px;
+                margin-left:5px;
+                height:50px;
+                width:50px;
+              }
+            </style>
         <li><a class = "black-text col" href ="/home">moodwise</a></li>
         <li><a class = "black-text col" href ="/journaling">journaling</a></li>
         <li><a class = "nav-color black-text col" href = "/journaling/viewJournals">view journals</a></li>
@@ -52,7 +67,7 @@
       </ul>
 
     </nav>
-    <li><strong>user</strong> <%= username %></li>
+    <li id = "li_margin"><strong>user</strong> <%= username %></li>
     
     <h1 class = "center-align">daily journal</h1>
     <br><br>
@@ -95,8 +110,7 @@
     document.getElementById("generateButton").addEventListener("click", generateRandomPrompt);
   </script>
   
-    <div>
-
+    <div class = "custom-margin">
       <form id = "journaladd" action = "/addtojournal" method = "post">
       <label for="inputBox"></label>
       <input type = "text" name="inputBox" class = "input-color" rows="5" cols="50">

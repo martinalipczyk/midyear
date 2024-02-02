@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link rel="stylesheet" href="/styling.css"> -->
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>homepage</title>
     <style>
       body {
@@ -19,15 +16,27 @@
         background-color: rgb(170, 218, 233);
         color: black;
       }
+      #li_margin {
+        margin-left: 20px;
+        margin-top: 5px;
+      }
+      
   </style>
 </head>
 <body>
   <nav class = "nav-color center-align">
-    <!-- //userinfo = sendInfo;
-    userid = sendIfo[0];
-    username = sendInfo[1] -->
+    
     <ul>
         <row class = "nav-color">
+      <li><img class = "img" id ="navlogo" src = "/images/mwlogo.png" alt = "mwlogo"></li>
+      <style>
+        #navlogo{
+          margin-top:10px;
+          margin-left:5px;
+          height:50px;
+          width:50px;
+        }
+      </style>
       <li><a class = "nav-color" href ="/home">moodwise</a></li>
       <li><a class = "nav-color" href ="/journaling">journaling</a></li>
       <li><a class = "nav-color black-text col" href = "/journaling/viewJournals">view journals</a></li>
@@ -38,12 +47,28 @@
     </ul>
 
   </nav>
-  <li><strong>user</strong> <%= username %></li>
-    <h1 class = "center-align">moodwise</h1>
-    </ul>
+
+  <li id = "li_margin"><strong>user</strong> <%= username %></li>
+    
+    </row> 
+    <div class = "center-align">
+      <img class = "img" id ="ourlogo" src = "/images/mwlogo.png" alt = "mwlogo">
+    <style>
+      #ourlogo{
+        height: 400px;
+        width: 400px;
+      }
+    </style>
+    </div> 
+    
+
 
     
-    <h6 class = "center-align">improve teen mental health & wellness - help individuals be more mindful & in touch with emotions - create consistency in mindful habits</h3>
+    <h6 class = "center-align">improve teen mental health & wellness - help individuals be more mindful & in touch with emotions - create consistency in positive habits</h3>
 
 </body>
+
+<script src = "/scripts/javascript.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </html>
