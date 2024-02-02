@@ -7,14 +7,25 @@
     <title>picture upload!!</title>
     <link rel="stylesheet" href="/stylesheets/styling.css" />
     <script src="/scripts/javascript.js" defer></script>
-    <button id = "home"  onclick="window.location.href='/home'">home</button>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <h1>daily image</h1>
     <br><br>
     <h2>what happened today?</h2>
 
 </head>
 <body>
-  
+  <nav class = "white center-align">
+    <ul>
+        <row>
+      <li><a class = "black-text col" href ="/home">moodwise</a></li>
+      <li><a class = "black-text col" href ="/journaling">journaling</a></li>
+      <li><a class = "black-text col" href ="/moodtracker">mood tracker</a></li>
+      <li><a class = "black-text col " href = "/pictureupload">upload your picture!!</a></li>
+      <li><a class = "black-text col" href = "/todo">to-do</a></li>
+      </row>
+    </ul>
+  </nav>
     <div class="first">
         <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"></p>
         <p><img id="output" width="200" /></p>

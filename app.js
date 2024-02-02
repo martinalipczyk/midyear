@@ -51,7 +51,7 @@ app.get( "/moodtracker", ( req, res ) => {
 } );
 
 app.get( "/journaling", ( req, res ) => {
-    res.render( "journaling" );
+    res.render( "journaling", {user_id: userid, username: userna} );
 } );
 
 app.get( "/pictureupload", ( req, res ) => {
@@ -78,9 +78,17 @@ app.get( "/moodtracker/upset", ( req, res ) => {
     res.sendFile( __dirname + "/moodPages/upset.html" );
 } );
 
-app.get( "/journaling/viewJournals", ( req, res ) => {
-    res.render( "viewJournals", );
-} );
+app.get("/journaling/viewJournals", (req, res) => {
+    db.query('SELECT text FROM journals WHERE userid = ?', [userid], (err, results) => {
+        if (err) {
+            console.error('Error executing query: ' + err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+
+        res.render("viewJournals", { user_id: userid, username: userna, journals: results });
+    });
+});
+
 
 app.get( "/login", ( req, res ) => {
     res.render( "login" );
@@ -225,7 +233,7 @@ app.post('/addtojournal', (req, res) => {
             console.error('Error adding to journal: ' + err.message);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
-        res.status(200).json({ message: 'added to journal' });
+        res.render('journaling');
     });
 });
 
