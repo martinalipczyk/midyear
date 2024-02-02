@@ -140,11 +140,7 @@
 
 
 
-// Add an event listener to execute when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function () {
-    // Make an AJAX request to get the user's tasks from the database
-    fetchUserTasks();
-});
+document.addEventListener('DOMContentLoaded', fetchUserTasks);
 
 document.querySelector('#push').onclick = function () {
     const taskName = document.querySelector('#newtask input').value;
@@ -170,13 +166,11 @@ document.querySelector('#push').onclick = function () {
 
         updateDeleteFunctionality();
 
-        // Make an AJAX request to add the task to the database
         addToDatabase(taskName);
     }
 };
 
 function addToDatabase(taskName) {
-    // Make an AJAX request to your server to add the task to the database
     fetch('/addTask', {
         method: 'POST',
         headers: {
@@ -194,14 +188,14 @@ function updateDeleteFunctionality() {
 
     for (var i = 0; i < current_tasks.length; i++) {
         current_tasks[i].onclick = function () {
-            // Retrieve the task name from the task element
+
             var taskElement = this.parentNode;
             var taskName = taskElement.querySelector("#taskname").innerText;
 
-            // Make an AJAX request to delete the task from the database
+
             deleteFromDatabase(taskName);
 
-            // Remove the task element from the UI
+
             taskElement.remove();
         };
     }
@@ -228,42 +222,50 @@ input.addEventListener("keypress", function (event) {
             input.value = "";
             updateDeleteFunctionality();
 
-            // Make an AJAX request to add the task to the database
             addToDatabase(input.value);
         }
     }
 });
 
-// Function to fetch user's tasks from the database
+
 function fetchUserTasks() {
-    // Make an AJAX request to your server to get the user's tasks
     fetch('/getUserTasks')
         .then(response => response.json())
         .then(data => {
-            // Populate the task list with the user's tasks
-            data.tasks.forEach(task => {
-                document.querySelector('#tasks').innerHTML += `
-                    <div class="container">
-                        <div class="row">
-                            <span class="col s3 left-align" id="taskname">${task.task_name}</span>
-                            <a href="#" class="col s2 btn right-align offset-s6 delete-task">
-                                <i class="far fa-trash-alt"></i>done
-                            </a>
-                            <p></p>
-                        </div>
-                    </div>
-                `;
-            });
 
-            // Update delete functionality for the newly added tasks
-            updateDeleteFunctionality();
+            displayTasks(data.tasks);
         })
         .catch(error => console.error('Error fetching user tasks:', error));
 }
 
-// Function to delete task from the database
+function displayTasks(tasks) {
+    const tasksContainer = document.querySelector('#tasks');
+
+
+    tasksContainer.innerHTML = '';
+
+
+    tasks.forEach(task => {
+        tasksContainer.innerHTML += `
+            <div class="container">
+                <div class="row">
+                    <span class="col s3 left-align" id="taskname">${task.task_name}</span>
+                    <a href="#" class="col s2 btn right-align offset-s6 delete-task">
+                        <i class="far fa-trash-alt"></i>done
+                    </a>
+                    <p></p>
+                </div>
+            </div>
+        `;
+    });
+
+
+    updateDeleteFunctionality();
+}
+
+
 function deleteFromDatabase(taskName) {
-    // Make an AJAX request to your server to delete the task from the database
+
     fetch('/deleteTask', {
         method: 'POST',
         headers: {
