@@ -7,52 +7,77 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        .active {
-            background-color:  rgb(4, 124, 164);
+        body {
+            background-color: lightblue; /* Set your desired background color */
+        }
+        .nav-color {
+            background-color: rgb(170, 218, 233);
+            color: black;
+        }
+        .button-color {
+            background-color: rgb(199, 228, 237);
+            color: black;
+        }
+        .custom-margin {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .button-color:hover {
+            background-color:  rgb(122, 185, 206);
             color: white;
         }
 
-        button:active, button.active {
-            background-color:  rgb(4, 124, 164);
-            color: white;
+        .custom-btm {
+            margin-bottom: 20px;
         }
-
+        
     </style>
     
 </head>
 <body>
-    <div class = "home">
-        <button id = "home" onclick = "window.location.href='/home'">home</button>
-    </div>
-    <div class =  "intro">
-        <h1>If you're bored...</h1>
-        <p>Try a few of these simple exercises to help improve your mood and productivity!</p>
-        <p> 1. Try journaling about <b>what makes you productive:</b></p>
-    </script>
-</div>
-
-<label for="inputBox"></label>
-<textarea id="inputBox" rows="5" cols="50"></textarea>
-
-<button onclick="displayText()">add text to journal</button>
-
-<div id="output"></div>
-
-<script>
-    function displayText() {
-        var inputText = document.getElementById("inputBox").value;
-        document.getElementById("output").innerHTML = "" + inputText;
-    }
-</script>
-    </div>
-
-    <p> 2. Get some movement in with <b>dance!</b></p>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=X5HY_dEmkVMMQvM2&amp;list=PL3oR83GGTZrexHTHtnQiMgK_PAYBQK8CW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
- <div>
+    <nav class = "nav-color center-align">
+        <!-- //userinfo = sendInfo;
+        userid = sendIfo[0];
+        username = sendInfo[1] -->
+        <ul>
+            <row class = "nav-color">
+          <li><a class = "nav-color" href ="/home">moodwise</a></li>
+          <li><a class = "nav-color" href ="/journaling">journaling</a></li>
+          <li><a class = "nav-color black-text col" href = "/journaling/viewJournals">view journals</a></li>
+          <li><a class = "nav-color" href ="/moodtracker">mood tracker</a></li>
+          <!-- <li><a class = "nav-color " href = "/pictureupload">upload your picture!!</a></li> -->
+          <li><a class = "nav-color" href = "/todo">to-do</a></li>
+          </row>
+        </ul>
+    </nav>   
+    <div class = "custom-margin">
+            <div>
+                <h1>If you're bored...</h1>
+                <p>Try a few of these simple exercises to help improve your mood and productivity!</p>
+                <p> 1. Try journaling about <b>what makes you productive:</b></p>
+            </div>
+        
+        <label for="inputBox"></label>
+        <textarea id="inputBox" rows="5" cols="50"></textarea>
+        
+        <button class = "btn button-color" onclick="displayText()">add text to journal</button>
+ 
+        <div id="output"></div>
     
+            <script>
+                function displayText() {
+                    var inputText = document.getElementById("inputBox").value;
+                    document.getElementById("output").innerHTML = "" + inputText;
+                }
+            </script>
+        </div>
     
- </div>
+        <p class = "custom-margin"> 2. Get some movement in with <b>dance!</b></p>
+        <div class = "custom-margin">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=X5HY_dEmkVMMQvM2&amp;list=PL3oR83GGTZrexHTHtnQiMgK_PAYBQK8CW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
 </body>
 </html>
 
