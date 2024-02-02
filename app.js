@@ -180,34 +180,30 @@ app.post('/dologin', (req, res) => {
 });
 
 
-// app.post('/deleteTask', (req, res) => {
-//     const { user_id, task_name } = req.body;
+app.post('/deleteTask', (req, res) => {
+    const { taskName } = req.body; 
 
-//     // Check if the user exists before deleting the task
-//     const checkUserQuery = 'SELECT COUNT(*) AS userCount FROM user WHERE user_id = ?';
-//     db.query(checkUserQuery, [user_id], (checkUserErr, checkUserResults) => {
-//         if (checkUserErr) {
-//             console.error('Error checking user existence: ' + checkUserErr.message);
-//             return res.status(500).json({ error: 'Internal Server Error' });
-//         }
+    if (!userid) {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
 
-//         const userExists = checkUserResults[0].userCount > 0;
+    // Add code to delete the task with the given name and user_id from the database
+    // Example: (this depends on your database schema and query mechanism)
+    const deleteTaskQuery = 'DELETE FROM tasks WHERE task_name = ? AND user_id = ?';
+    db.query(deleteTaskQuery, [taskName, userid], (deleteErr, deleteResults) => {
+        if (deleteErr) {
+            console.error('Error deleting task: ' + deleteErr.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
 
-//         if (!userExists) {
-//             return res.status(404).json({ error: 'User not found' });
-//         }
-
-//         // If the user exists, proceed to delete the task from the tasks table
-//         const deleteTaskQuery = 'DELETE FROM tasks WHERE user_id = ? AND task_name = ?';
-//         db.query(deleteTaskQuery, [user_id, task_name], (deleteErr, deleteResults) => {
-//             if (deleteErr) {
-//                 console.error('Error deleting task: ' + deleteErr.message);
-//                 return res.status(500).json({ error: 'Internal Server Error' });
-//             }
-//             res.status(200).json({ message: 'Task deleted successfully' });
-//         });
-//     });
-// });
+        // Check if any rows were affected, indicating success
+        if (deleteResults.affectedRows > 0) {
+            res.json({ message: 'Task deleted successfully' });
+        } else {
+            res.status(404).json({ error: 'Task not found' });
+        }
+    });
+});
 
 // app.get('/getTasks/:user_id', (req, res) => {
 //     const user_id = req.params.user_id;
@@ -262,18 +258,37 @@ app.get('/getUserTasks', (req, res) => {
     //   res.status(200).json({ tasks });
     // });
 
-        db.query('SELECT task_name FROM tasks WHERE user_id = ?', [userid], (err, results) => {
-        if (err) {
-            console.error('Error executing query: ' + err.message);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
+        // db.query('SELECT task_name FROM tasks WHERE user_id = ?', [userid], (err, results) => {
+        // if (err) {
+        //     console.error('Error executing query: ' + err.message);
+        //     return res.status(500).json({ error: 'Internal Server Error' });
+        // }
 
-        const tasks = results.map(result => ({ task_name: result.task_name }));
+        // const tasks = results.map(result => ({ task_name: result.task_name }));
         
-        res.render("todo", { tasks: tasks });
+        // res.render("todo", { tasks: results });
+
+        if (!userid) {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
+    
+        // Query to get tasks for the logged-in user
+        const getUserTasksQuery = 'SELECT task_name FROM tasks WHERE user_id = ?';
+        db.query(getUserTasksQuery, [userid], (err, results) => {
+            if (err) {
+                console.error('Error fetching user tasks:', err);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+    
+            // Map results to an array of objects with the property 'task_name'
+            const tasks = results.map(result => ({ task_name: result.task_name }));
+    
+            // Render the 'todo' template with the 'tasks' data
+            res.json({ tasks: tasks });
+        });
     });
 
-  });
+
 
 app.post('/addtojournal', (req, res) => {
     const {inputBox } = req.body;
@@ -290,27 +305,30 @@ app.post('/addtojournal', (req, res) => {
 
 app.post('/uploadPictures', upload.single('image'), (req, res) => {
     try {
-        // Access the uploaded file information using req.file
-        const { filename } = req.file;
+        const { buffer, originalname } = req.file;
 
-        // Access other form data using req.body
-        const { image, textinput } = req.body;
+        if (!buffer || !originalname) {
+            console.error('No file uploaded');
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+        const { textinput } = req.body;
 
-        // Save the file information and other data to the database
         const query = 'INSERT INTO view_images (userid, picture, caption) VALUES (?, ?, ?)';
-        db.query(query, [userid, image, textinput], (err, results) => {
+        db.query(query, [userid, buffer, textinput], (err, results) => {
             if (err) {
                 console.error('Error adding to picturebook: ' + err.message);
                 return res.status(500).json({ error: 'Internal Server Error' });
             }
 
-            res.render('pictureupload');
+            res.redirect('/pictureupload/viewpictures'); 
         });
     } catch (error) {
         console.error('Error handling picture upload:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
 
 
 
