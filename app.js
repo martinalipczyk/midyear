@@ -228,18 +228,43 @@ app.post('/dologin', (req, res) => {
 
 
 app.post('/addTask', (req, res) => {
-    const { task_name } = req.body;
+    const { taskName } = req.body;
 
-        // If the user exists, proceed to insert the task into the tasks table
-        const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
-        db.query(insertTaskQuery, [userid, task_name], (insertErr, insertResults) => {
-            if (insertErr) {
-                console.error('Error saving task: ' + insertErr.message);
-                return res.status(500).json({ error: 'Internal Server Error' });
-            }
-            res.status(200).json({ message: 'Task saved successfully' });
-        });
+    // If the user exists, proceed to insert the task into the tasks table
+    const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
+    db.query(insertTaskQuery, [userid, taskName], (insertErr, insertResults) => {
+        if (insertErr) {
+            console.error('Error saving task: ' + insertErr.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.status(200).json({ message: 'Task saved successfully' });
     });
+});
+
+app.get('/getUserTasks', (req, res) => {
+    // Retrieve the user ID from the session or wherever it is stored
+     // Adjust this based on your authentication mechanism
+
+    // If the user is not logged in or there is no user ID, return an error
+    if (!userid) {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    // Query to get tasks for the logged-in user
+    const getUserTasksQuery = 'SELECT task_name FROM tasks WHERE user_id = ?';
+    db.query(getUserTasksQuery, [userid], (err, results) => {
+        if (err) {
+            console.error('Error fetching user tasks:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+
+        // Extract task names from the database results
+        const tasks = results.map(result => result.task_name);
+
+        // Return the tasks as JSON
+        res.status(200).json({ tasks });
+    });
+});
 
 
 app.post('/addtojournal', (req, res) => {
@@ -278,6 +303,8 @@ app.post('/uploadPictures', upload.single('image'), (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
 
 
 // start the server

@@ -10,17 +10,19 @@
     <!-- <link rel="stylesheet" href="/styling.css"> -->
 </head>
 <body>
-    <h1>View Your Journals</h1>
-
-    <% if (journals && journals.length > 0) { %>
-        <ul>
-            <% for (let i = 0; i < journals.length; i++) { %>
-                <li><%= journals[i].text %></li>
-            <% } %>
-        </ul>
-    <% } else { %>
-        <p>No journals available.</p>
-    <% } %>
+    <h1 class = "center-align">View Your Journals</h1>
+    <div class="container">
+        <% if (journals && journals.length > 0) { %>
+            <ul>
+                <% for (let i = 0; i < journals.length; i++) { %>
+                    <li class = "center-align"><%= journals[i].text %></li>
+                <% } %>
+            </ul>
+        <% } else { %>
+            <p>No journals available.</p>
+        <% } %>
+    </div>
+    
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
