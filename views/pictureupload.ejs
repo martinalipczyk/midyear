@@ -9,9 +9,6 @@
     <script src="/scripts/javascript.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <h1>daily image</h1>
-    <br><br>
-    <h2>what happened today?</h2>
 
 </head>
 <body>
@@ -26,6 +23,11 @@
       </row>
     </ul>
   </nav>
+
+  <h1>daily image</h1>
+    <br><br>
+    <h2>what happened today?</h2>
+    
     <div class="first">
       <form id = "get images" method = "POST" action = "/uploadPictures" enctype="multipart/form-data">
         <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"></p>

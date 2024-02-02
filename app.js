@@ -69,7 +69,7 @@ app.get( "/todo", ( req, res ) => {
 } );
 
 app.get( "/moodtracker", ( req, res ) => {
-    res.sendFile( "/moodPages/moodtracker.html" );
+    res.render( "moodtracker" );
 } );
 
 app.get( "/journaling", ( req, res ) => {
@@ -81,23 +81,23 @@ app.get( "/pictureupload", ( req, res ) => {
 } );
 
 app.get( "/moodtracker/bored", ( req, res ) => {
-    res.sendFile(__dirname+ "/moodPages/bored.html" );
+    res.render("bored");
 } );
 
 app.get( "/moodtracker/happy", ( req, res ) => {
-    res.sendFile( __dirname + "/moodPages/happy.html" );
+    res.render( "happy" );
 } );
 
 app.get( "/moodtracker/stressed", ( req, res ) => {
-    res.sendFile( __dirname + "/moodPages/stressed.html" );
+    res.render( "stressed" );
 } );
 
 app.get( "/moodtracker/tired", ( req, res ) => {
-    res.sendFile( __dirname + "/moodPages/tired.html" );
+    res.render( "tired" );
 } );
 
 app.get( "/moodtracker/upset", ( req, res ) => {
-    res.sendFile( __dirname + "/moodPages/upset.html" );
+    res.render( "upset" );
 } );
 
 app.get("/journaling/viewJournals", (req, res) => {
@@ -121,6 +121,8 @@ app.get("/pictureupload/viewpictures", (req, res) => {
         res.render("viewpictures", { user_id: userid, username: userna, pictures: results });
     });
 });
+
+
 
 
 
