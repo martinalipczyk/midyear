@@ -17,7 +17,7 @@ let userid = null;
 // Use body-parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(express.json());
+app.use(express.json());
 
 // Configure Express to use EJS
 app.set( "views",  __dirname + "/views");
@@ -76,9 +76,9 @@ app.get( "/journaling", ( req, res ) => {
     res.render( "journaling", {user_id: userid, username: userna} );
 } );
 
-app.get( "/pictureupload", ( req, res ) => {
-    res.render( "pictureupload" );
-} );
+// app.get( "/pictureupload", ( req, res ) => {
+//     res.render( "pictureupload" );
+// } );
 
 app.get( "/moodtracker/bored", ( req, res ) => {
     res.render("bored");
@@ -111,16 +111,16 @@ app.get("/journaling/viewJournals", (req, res) => {
     });
 });
 
-app.get("/pictureupload/viewpictures", (req, res) => {
-    db.query('SELECT picture FROM view_images WHERE userid = ?', [userid], (err, results) => {
-        if (err) {
-            console.error('Error executing query: ' + err.message);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
+// app.get("/pictureupload/viewpictures", (req, res) => {
+//     db.query('SELECT picture FROM view_images WHERE userid = ?', [userid], (err, results) => {
+//         if (err) {
+//             console.error('Error executing query: ' + err.message);
+//             return res.status(500).json({ error: 'Internal Server Error' });
+//         }
 
-        res.render("viewpictures", { user_id: userid, username: userna, pictures: results });
-    });
-});
+//         res.render("viewpictures", { user_id: userid, username: userna, pictures: results });
+//     });
+// });
 
 app.get( "/login", ( req, res ) => {
     res.render( "login" );
@@ -222,7 +222,10 @@ app.post('/deleteTask', (req, res) => {
 app.post('/addTask', (req, res) => {
     const { taskName } = req.body;
 
-    // If the user exists, proceed to insert the task into the tasks table
+    if (!taskName || taskName.trim() === '') {
+        return res.status(400).json({ error: 'Task name cannot be empty' });
+    }
+
     const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
     db.query(insertTaskQuery, [userid, taskName], (insertErr, insertResults) => {
         if (insertErr) {
@@ -231,48 +234,16 @@ app.post('/addTask', (req, res) => {
         }
         res.status(200).json({ message: 'Task saved successfully' });
     });
+    console.log('Received taskName:', taskName);
 });
 
 app.get('/getUserTasks', (req, res) => {
-    // // Retrieve the user ID from the session or wherever it is stored
-    // // Adjust this based on your authentication mechanism
-  
-    // // If the user is not logged in or there is no user ID, return an error
-    // if (!userid) {
-    //   return res.status(401).json({ error: 'Unauthorized' });
-    // }
-  
-    // // Query to get tasks for the logged-in user
-    // const getUserTasksQuery = 'SELECT task_name FROM tasks WHERE user_id = ?';
-    // db.query(getUserTasksQuery, [userid], (err, results) => {
-    //   if (err) {
-    //     console.error('Error fetching user tasks:', err);
-    //     return res.status(500).json({ error: 'Internal Server Error' });
-    //   }
-  
-    //   // Extract task names from the database results
-    //   const tasks = results.map(result => ({ task_name: result.task_name }));
-  
-    //   console.log(tasks);
-    //   // Return the tasks as JSON
-    //   res.status(200).json({ tasks });
-    // });
-
-        // db.query('SELECT task_name FROM tasks WHERE user_id = ?', [userid], (err, results) => {
-        // if (err) {
-        //     console.error('Error executing query: ' + err.message);
-        //     return res.status(500).json({ error: 'Internal Server Error' });
-        // }
-
-        // const tasks = results.map(result => ({ task_name: result.task_name }));
-        
-        // res.render("todo", { tasks: results });
 
         if (!userid) {
             return res.status(401).json({ error: 'Unauthorized' });
         }
     
-        // Query to get tasks for the logged-in user
+    
         const getUserTasksQuery = 'SELECT task_name FROM tasks WHERE user_id = ?';
         db.query(getUserTasksQuery, [userid], (err, results) => {
             if (err) {
@@ -280,10 +251,8 @@ app.get('/getUserTasks', (req, res) => {
                 return res.status(500).json({ error: 'Internal Server Error' });
             }
     
-            // Map results to an array of objects with the property 'task_name'
             const tasks = results.map(result => ({ task_name: result.task_name }));
     
-            // Render the 'todo' template with the 'tasks' data
             res.json({ tasks: tasks });
         });
     });
@@ -303,30 +272,30 @@ app.post('/addtojournal', (req, res) => {
     });
 });
 
-app.post('/uploadPictures', upload.single('image'), (req, res) => {
-    try {
-        const { buffer, originalname } = req.file;
+// app.post('/uploadPictures', upload.single('image'), (req, res) => {
+//     try {
+//         const { buffer, originalname } = req.file;
 
-        if (!buffer || !originalname) {
-            console.error('No file uploaded');
-            return res.status(400).json({ error: 'No file uploaded' });
-        }
-        const { textinput } = req.body;
+//         if (!buffer || !originalname) {
+//             console.error('No file uploaded');
+//             return res.status(400).json({ error: 'No file uploaded' });
+//         }
+//         const { textinput } = req.body;
 
-        const query = 'INSERT INTO view_images (userid, picture, caption) VALUES (?, ?, ?)';
-        db.query(query, [userid, buffer, textinput], (err, results) => {
-            if (err) {
-                console.error('Error adding to picturebook: ' + err.message);
-                return res.status(500).json({ error: 'Internal Server Error' });
-            }
+//         const query = 'INSERT INTO view_images (userid, picture, caption) VALUES (?, ?, ?)';
+//         db.query(query, [userid, buffer, textinput], (err, results) => {
+//             if (err) {
+//                 console.error('Error adding to picturebook: ' + err.message);
+//                 return res.status(500).json({ error: 'Internal Server Error' });
+//             }
 
-            res.redirect('/pictureupload/viewpictures'); 
-        });
-    } catch (error) {
-        console.error('Error handling picture upload:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
+//             res.redirect('/pictureupload/viewpictures'); 
+//         });
+//     } catch (error) {
+//         console.error('Error handling picture upload:', error);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// });
 
 
 
