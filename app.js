@@ -13,6 +13,7 @@ let userid = null;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
 // Configure Express to use EJS
 app.set( "views",  __dirname + "/views");
 app.set( "view engine", "ejs" );
@@ -42,6 +43,7 @@ app.get( "/createaccount", ( req, res ) => {
 
 app.get( "/todo", ( req, res ) => {
     res.render('todo', {user_id: userid, username: userna});
+
 } );
 
 app.get( "/moodtracker", ( req, res ) => {
@@ -86,6 +88,18 @@ app.get("/journaling/viewJournals", (req, res) => {
         res.render("viewJournals", { user_id: userid, username: userna, journals: results });
     });
 });
+
+app.get("/pictureupload/viewpictures", (req, res) => {
+    db.query('SELECT picture FROM view_images WHERE userid = ?', [userid], (err, results) => {
+        if (err) {
+            console.error('Error executing query: ' + err.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+
+        res.render("viewpictures", { user_id: userid, username: userna, pictures: results });
+    });
+});
+
 
 
 app.get( "/login", ( req, res ) => {
@@ -148,38 +162,6 @@ app.post('/dologin', (req, res) => {
 });
 
 
-// app.post('/saveTask', (req, res) => {
-//     const { userid, task_name } = req.body;
-
-//     console.log('Received request to save task:', { userid, task_name });
-
-
-//     // Check if the user exists before inserting the task
-//     const checkUserQuery = 'SELECT COUNT(*) AS userCount FROM user WHERE user_id = ?';
-//     db.query(checkUserQuery, [userid], (checkUserErr, checkUserResults) => {
-//         if (checkUserErr) {
-//             console.error('Error checking user existence: ' + checkUserErr.message);
-//             return res.status(500).json({ error: 'Internal Server Error' });
-//         }
-
-//         const userExists = checkUserResults[0].userCount > 0;
-
-//         if (!userExists) {
-//             return res.status(404).json({ error: 'User not found' });
-//         }
-
-//         // If the user exists, proceed to insert the task into the tasks table
-//         const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
-//         db.query(insertTaskQuery, [userid, task_name], (insertErr, insertResults) => {
-//             if (insertErr) {
-//                 console.error('Error saving task: ' + insertErr.message);
-//                 return res.status(500).json({ error: 'Internal Server Error' });
-//             }
-//             res.status(200).json({ message: 'Task saved successfully' });
-//         });
-//     });
-// });
-
 // app.post('/deleteTask', (req, res) => {
 //     const { user_id, task_name } = req.body;
 
@@ -222,6 +204,22 @@ app.post('/dologin', (req, res) => {
 //     });
 // });
 
+
+app.post('/saveTask', (req, res) => {
+    const { task_name } = req.body;
+
+        // If the user exists, proceed to insert the task into the tasks table
+        const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
+        db.query(insertTaskQuery, [userid, task_name], (insertErr, insertResults) => {
+            if (insertErr) {
+                console.error('Error saving task: ' + insertErr.message);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            res.status(200).json({ message: 'Task saved successfully' });
+        });
+    });
+
+
 app.post('/addtojournal', (req, res) => {
     const {inputBox } = req.body;
 
@@ -244,7 +242,7 @@ app.post('/uploadPictures', (req, res) => {
             console.error('Error adding to picturebook: ' + err.message);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
-        res.render('/uploadPictures');
+        res.render('pictureupload');
     });
 });
 
