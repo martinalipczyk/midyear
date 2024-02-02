@@ -31,11 +31,33 @@
         <h1>To-do List</h1>
         <p> organize and assess your tasks</p>
         
+
         <div class = "container">
         <div id = "newtask">
             <input type = "text" id = "txt" placeholder="add tasks">
             <a class = "btn"id="push">add</a>
          </div>
+
+         <% try { %>
+            <% if (tasks && tasks.length > 0) { %>
+                <% for (let i = 0; i < tasks.length; i++) { %>
+                    <div class="container">
+                        <div class="row">
+                            <span class="col s3 left-align" id="taskname"><%= tasks[i] %></span>
+                            <a href="#" class="col s2 btn right-align offset-s6 delete-task">
+                                <i class="far fa-trash-alt"></i>done
+                            </a>
+                            <p></p>
+                        </div>
+                    </div>
+                <% } %>
+            <% } else { %>
+                <p>No tasks available</p>
+            <% } %>
+        <% } catch (error) { %>
+            <p>Error rendering tasks: <%= error.message %></p>
+        <% } %>
+
             
         <div id = "tasks">
         
