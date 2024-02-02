@@ -69,13 +69,19 @@
         .home {
             text-align: center;
         }
-
+        .nav-color {
+            background-color: rgb(170, 218, 233);
+            color: black;
+        }
+        .custom-margin {
+            padding-left: 20px;
+        }
 
     </style>
     <script src="/scripts/mood_journal.js" defer></script>
 </head>
 <body>
-    <nav class = "white center-align">
+    <nav class = "nav-color center-align">
         <ul>
             <row>
           <li><a class = "black-text col" href ="/home">moodwise</a></li>
@@ -86,67 +92,82 @@
           </row>
         </ul>
 
-      </nav>
-    <div class =  "intro">
-        <h1 class = "center-align">my mood?</h1>
-        <p class = "center-align">if you're struggling to identify how you feel, take this short quiz: we might be able to push you in the right direction!</p>
-    </div>
+    </nav>
+    <div class = "custom-margin">
+        <div class =  "intro">
+            <h1 class = "center-align">my mood?</h1>
+            <p class = "center-align">if you're struggling to identify how you feel, take this short quiz: we might be able to push you in the right direction!</p>
+        </div>
+        
+        <h4>1. How much sleep did you get last night?</h2>
+            <div class = "custom-margin">
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q1a1" data-question = "1"> &#60; 3 hours</button>
+                </div>
+                <div class ="answer-choice">
+                    <button class = "btn button-color" id = "q1a2" data-question = "1"> 3 - 5 hours</button>
+                </div>
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q1a3" data-question = "1"> 6 - 8 hours</button>
+                </div>
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q1a4" data-question = "1"> &gt; 9 hours</button>
+                </div>
+            </div>
+
+        <h4>2. Is there currently something weighing on your mind? </h2>
+            <div class = "custom-margin">
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q2a1" data-question = "2"> yes </button>
+                </div>
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q2a2" data-question = "2"> no </button>
+                </div>
+            </div>
+        
+        <h4>3. Do you feel like you've been productive with your time lately?</h2>
+            <div class = "custom-margin">
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q3a1" data-question = "3"> yes </button>
+                </div>
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q3a2" data-question = "3"> no </button>
+                </div>
+            </div>
+
+        <h4>4. Have you recently been in a fight with someone? </h2>
+            <div class = "custom-margin">
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q4a1" data-question = "4"> yes </button>
+                </div>
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q4a2" data-question = "4"> no </button>
+                </div>
+            </div>
+
+        <h4>5. Have there been any big changes in your life lately?</h2>
+            <div class = "custom-margin">
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q5a1" data-question = "5"> yes </button>
+                </div>
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q5a2" data-question = "5"> no </button>
+                </div>
+            </div>
+        <h4>6. Are you taking this quiz our of bordom or because you're actually interested?</h2>
+            <div class = "custom-margin">
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q6a1" data-question = "6"> out of bordeom </button>
+                </div>
+                <div class="answer-choice">
+                    <button class = "btn button-color" id="q6a2" data-question = "6"> i'm interested   </button>
+                </div>
+                <p id="result"></p>
     
-    <h4>1. How much sleep did you get last night?</h2>
-		<div class="answer-choice">
-            <button class = "btn button-color" id="q1a1" data-question = "1"> &#60; 3 hours</button>
+            </div>
+        <div id = "finish_btn">
+        <button class = "btn button-color" id = "finish_button"> Next! </button>
         </div>
-        <div class ="answer-choice">
-            <button class = "btn button-color" id = "q1a2" data-question = "1"> 3 - 5 hours</button>
-        </div>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q1a3" data-question = "1"> 6 - 8 hours</button>
-        </div>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q1a4" data-question = "1"> &gt; 9 hours</button>
-        </div>
-
-    <h4>2. Is there currently something weighing on your mind? </h2>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q2a1" data-question = "2"> yes </button>
-        </div>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q2a2" data-question = "2"> no </button>
-        </div>
-    
-    <h4>3. Do you feel like you've been productive with your time lately?</h2>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q3a1" data-question = "3"> yes </button>
-        </div>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q3a2" data-question = "3"> no </button>
-        </div>
-
-    <h4>4. Have you recently been in a fight with someone? </h2>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q4a1" data-question = "4"> yes </button>
-        </div>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q4a2" data-question = "4"> no </button>
-        </div>
-    <h4>5. Have there been any big changes in your life lately?</h2>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q5a1" data-question = "5"> yes </button>
-        </div>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q5a2" data-question = "5"> no </button>
-        </div>
-    <h4>6. Are you taking this quiz our of bordom or because you're actually interested?</h2>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q6a1" data-question = "6"> out of bordeom </button>
-        </div>
-        <div class="answer-choice">
-            <button class = "btn button-color" id="q6a2" data-question = "6"> i'm interested   </button>
-        </div>
-        <p id="result"></p>
-
-    <div id = "finish_btn">
-      <button class = "btn button-color" id = "finish_button"> Next! </button>
     </div>
 </body>
 </html>
