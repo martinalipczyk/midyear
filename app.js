@@ -216,19 +216,19 @@ app.post('/dologin', (req, res) => {
 // });
 
 
-// app.post('/saveTask', (req, res) => {
-//     const { task_name } = req.body;
+app.post('/addTask', (req, res) => {
+    const { task_name } = req.body;
 
-//         // If the user exists, proceed to insert the task into the tasks table
-//         const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
-//         db.query(insertTaskQuery, [userid, task_name], (insertErr, insertResults) => {
-//             if (insertErr) {
-//                 console.error('Error saving task: ' + insertErr.message);
-//                 return res.status(500).json({ error: 'Internal Server Error' });
-//             }
-//             res.status(200).json({ message: 'Task saved successfully' });
-//         });
-//     });
+        // If the user exists, proceed to insert the task into the tasks table
+        const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
+        db.query(insertTaskQuery, [userid, task_name], (insertErr, insertResults) => {
+            if (insertErr) {
+                console.error('Error saving task: ' + insertErr.message);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            res.status(200).json({ message: 'Task saved successfully' });
+        });
+    });
 
 
 app.post('/addtojournal', (req, res) => {
@@ -254,7 +254,7 @@ app.post('/uploadPictures', upload.single('image'), (req, res) => {
 
         // Save the file information and other data to the database
         const query = 'INSERT INTO view_images (userid, picture, caption) VALUES (?, ?, ?)';
-        db.query(query, [userid, filename, textinput], (err, results) => {
+        db.query(query, [userid, image, textinput], (err, results) => {
             if (err) {
                 console.error('Error adding to picturebook: ' + err.message);
                 return res.status(500).json({ error: 'Internal Server Error' });
