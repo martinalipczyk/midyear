@@ -226,15 +226,16 @@ app.post('/addTask', (req, res) => {
         return res.status(400).json({ error: 'Task name cannot be empty' });
     }
 
+    console.log('Received taskName:', taskName);
     const insertTaskQuery = 'INSERT INTO tasks (user_id, task_name) VALUES (?, ?)';
     db.query(insertTaskQuery, [userid, taskName], (insertErr, insertResults) => {
         if (insertErr) {
             console.error('Error saving task: ' + insertErr.message);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
+        console.log('Received taskName:', taskName);
         res.status(200).json({ message: 'Task saved successfully' });
     });
-    console.log('Received taskName:', taskName);
 });
 
 app.get('/getUserTasks', (req, res) => {
