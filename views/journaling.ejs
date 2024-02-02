@@ -26,6 +26,12 @@
     .custom-margin {
       margin-left: 20px;
     }
+
+    .button-color:hover {
+      background-color:  rgb(122, 185, 206);
+      color: white;
+    }
+    
   </style>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -39,7 +45,7 @@
         <li><a class = "black-text col" href ="/home">moodwise</a></li>
         <li><a class = "black-text col" href ="/journaling">journaling</a></li>
         <li><a class = "black-text col" href ="/moodtracker">mood tracker</a></li>
-        <li><a class = "black-text col " href = "/pictureupload">upload your picture!!</a></li>
+        <!-- <li><a class = "black-text col " href = "/pictureupload">upload your picture!!</a></li> -->
         <li><a class = "black-text col" href = "/todo">to-do</a></li>
         </row>
       </ul>
@@ -110,8 +116,8 @@
       <h4>after your done with your journal, try:</h3>
       <p class = "btn button-color" id = "viewing your journals"  onclick="window.location.href='/journaling/viewJournals'">view your journals!</p>
       <br>
-      <p class = "btn button-color" id = "tracking your mood"  onclick="window.location.href='/moodPages/moodtracker.html'">tracking your mood</p>
-      <p class = "btn button-color" id = "uploading a daily picture"  onclick="window.location.href='pictureupload'">uploading a daily picture</p>
+      <p class = "btn button-color" id = "tracking your mood"  onclick="window.location.href='/moodtracker'">tracking your mood</p>
+      <!-- <p class = "btn button-color" id = "uploading a daily picture"  onclick="window.location.href='pictureupload'">uploading a daily picture</p> -->
     </div>
 </body>
 </html>

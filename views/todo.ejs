@@ -11,17 +11,38 @@
      <!-- Compiled and minified JavaScript -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>To-do List</title>
+    <style>
+        .nav-color {
+            background-color: rgb(170, 218, 233);
+            color: black;
+        }
+        body {
+            background-color: lightblue; /* Set your desired background color */
+        }
+        .button-color {
+            background-color: rgb(199, 228, 237);
+            color: black;
+        }
+
+        .button-color:hover {
+            background-color:  rgb(122, 185, 206);
+            color: white;
+        }
+        .input-color {
+            background-color: rgb(197, 225, 232) !important;
+        }
+    </style>
 </head>
 <body>
-    <nav class = "white center-align">
+    <nav class = "nav-color center-align">
         <ul>
             <row>
-          <li><a class = "black-text col" href ="/home">moodwise</a></li>
-          <li><a class = "black-text col" href ="/journaling">journaling</a></li>
-          <li><a class = "black-text col" href ="/moodtracker">mood tracker</a></li>
-          <li><a class = "black-text col " href = "/pictureupload">upload your picture!!</a></li>
-          <li><a class = "black-text col" href = "/todo">to-do</a></li>
-          </row>
+                <li><a class = "black-text col" href ="/home">moodwise</a></li>
+                <li><a class = "black-text col" href ="/journaling">journaling</a></li>
+                <li><a class = "black-text col" href ="/moodtracker">mood tracker</a></li>
+                <!-- <li><a class = "black-text col " href = "/pictureupload">upload your picture!!</a></li> -->
+                <li><a class = "black-text col" href = "/todo">to-do</a></li>
+            </row>
         </ul>
 
       </nav>
@@ -34,8 +55,8 @@
 
         <div class = "container">
         <div id = "newtask">
-            <input type = "text" id = "txt" placeholder="add tasks">
-            <a class = "btn"id="push">add</a>
+            <input class = "black-text" type = "text" id = "txt" placeholder="add tasks">
+            <a class = "btn button-color black-text"id="push">add</a>
          </div>
 
          <!-- <% try { %>
