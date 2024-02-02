@@ -12,6 +12,9 @@
     body {
       background-color: lightblue; /* Set your desired background color */
     }
+    .input-color {
+      background-color: rgb(197, 225, 232) !important;
+    }
     .button-color {
       background-color: rgb(199, 228, 237);
       color: black;
@@ -81,7 +84,7 @@
 
       <form id = "journaladd" action = "/addtojournal" method = "post">
       <label for="inputBox"></label>
-      <input type = "text" name="inputBox" rows="5" cols="50">
+      <input type = "text" name="inputBox" class = "input-color" rows="5" cols="50">
 
       <div class = "center-align">
         <!-- <p class = "btn white black-text" onclick="displayText()">add text to journal</p> -->
